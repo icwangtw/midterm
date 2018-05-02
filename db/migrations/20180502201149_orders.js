@@ -6,12 +6,13 @@ exports.up = function(knex, Promise) {
         table.integer('prep_time');
         table.timestamp('ordered_time');
         table.string('status');
+        table.integer('customer_id');
       })
   ]);
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('orders').dropTable('famous_people')
+    knex.schema.dropTable('orders')
   ]);
 };
