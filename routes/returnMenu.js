@@ -30,15 +30,7 @@ knex('foods')
 
 app.post("/", (req, res) => {
 
-  var newUrl = req.body.longURL;
-  var newUser = req.body.u_id;
-  var newUserEmail = req.body.u_email;
-  urlDatabase[shortURL] =  {"url":newUrl, "id": newUser};
-  let templateVars = { 
-    user_obj: {"id": newUser, "email": newUserEmail},
-    urls: urlsForUser(newUser,urlDatabase)
-  };
-  res.render("urls_index", templateVars);
+
 });
 
 
