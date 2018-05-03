@@ -1,7 +1,84 @@
-body {
-  background-color: #EEE;
+%leftContent{
+  width: 80%;
 
-  h1 {
-    color: #244751;
+}
+
+%rightContent{
+  width: 20%;
+
+}
+
+
+%borders{
+  border-width: 1px;
+  border-style: solid;
+  border-color:black;
+}
+
+%myFont{
+  font-family: 'Open Sans', sans-serif;
+}
+
+%maincolor{
+  background-color: #F7F9F9;
+}
+
+%goBottom{
+  position: relative;
+  top:95%;
+}
+
+header a{
+  position:fixed;
+  top:0px;
+  overflow:visible;
+  font-size:3em;
+  text-align: center;
+  @extend %myFont;
+  @extend %borders;
+  @extend %leftContent;
+  @extend %maincolor;
+
+}
+
+body{
+  padding-top:65px;
+  @extend %myFont;
+  @extend %maincolor;
+
+  div, main{
+    @extend %leftContent;
+    @extend %borders;
+    border-bottom-width: 0;
   }
+
+  #sideBar{
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+    right:0;
+    top:0;
+    @extend %rightContent;
+    @extend %borders;
+    border-left-width: 0;
+    }
+
+  nav{
+    @extend %leftContent;
+    background-color: blue;
+    position: sticky;
+    top:65px;
+    @extend %borders;
+    border-bottom-width: 0;
+  }
+}
+
+#submitButton{
+  @extend %goBottom;
+  left:5%;
+}
+
+.totalAmount{
+  @extend %goBottom;
+  left:10%;
 }
