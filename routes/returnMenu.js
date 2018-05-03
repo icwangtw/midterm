@@ -1,6 +1,5 @@
 const pg = require("pg");
-const settings = require("./settings"); // settings.json
-var input = process.argv[2];
+const settings = require("./settings");
 
 var knex = require('knex')({
   client: 'pg',
@@ -13,20 +12,12 @@ var knex = require('knex')({
   }
 });
 
-knex('foods')
+let returnFoods = knex('foods')
   .select('*')
-  // .where({first_name: input})
-  // .orWhere({last_name: input})
   .orderBy('id','asc')
   .asCallback( function (err, result){
     if (err) {
       return console.error("error running query", err);
     }
-    
-    	console.log(result);
-
-
+      return result;
     });
-
-
-
