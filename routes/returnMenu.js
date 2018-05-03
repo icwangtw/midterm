@@ -20,4 +20,7 @@ let returnFoods = knex('foods')
       return console.error("error running query", err);
     }
       return result;
+      console.log(result);
 });
+
+module.exports = returnFoods;
