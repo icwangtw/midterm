@@ -7,6 +7,7 @@ const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app         = express();
 
 const knexConfig  = require("./knexfile");
@@ -17,6 +18,8 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
+const sendReadySMS = require("./routes/twilio_cready.js")
+const sendTimeSMS = require("./routes/twilio_ctime.js")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -50,9 +53,33 @@ app.get("/", (req, res) => {
     res.render("index", templateVars);
 });
 
+
 app.get("/confirm", (req, res) => {
     res.render("confirm");
 });
+
+app.post("/sms", (req, res) => {
+  const twiml = new MessagingResponse();
+  let timeResponse = req.body.Body.slice(0, 2)
+  let readyResponse = req.body.Body.slice(0, 5)
+  if (readyResponse == 'Ready') {
+    console.log("the food is ready!")
+    let orderNum = req.body.Body.slice(6, 8)
+    //update database with finished time
+    sendReadySMS(orderNum)
+    //pass ready ajaxcall to confirmation page
+  }
+  else {
+    console.log(timeResponse)
+    let orderNum = req.body.Body.slice(3, 5)
+    sendTimeSMS(timeResponse)
+    //pass repondTime to confirmation page and do a ajax call there
+  }
+  res.end(twiml.toString());
+});
+
+
+>>>>>>> 5af790f145f8c0d2957d1c5bff8af871478be96f
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
