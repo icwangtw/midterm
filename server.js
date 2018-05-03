@@ -53,7 +53,9 @@ app.get("/", (req, res) => {
     res.render("index", templateVars);
 });
 
-app.post("/confirm")
+app.post("/confirm", (req, res) => {
+
+});
 
 app.post("/sms", (req, res) => {
   const twiml = new MessagingResponse();

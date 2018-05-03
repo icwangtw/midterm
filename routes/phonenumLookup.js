@@ -1,0 +1,27 @@
+const pg = require("pg");
+const settings = require("./settings");
+
+var knex = require('knex')({
+  client: 'pg',
+  version: '7.2',
+  connection: {
+  user     : settings.user,
+  password : settings.password,
+  database : settings.database,
+  host     : settings.hostname,
+  }
+});
+
+function orderReady (orderNum){
+    knex('customers')
+    .join('orders' 'customers.id', '=', 'orders.customer_id')
+    .first('phone')
+    .where('orders.id', orderNum)
+    .asCallback( function (err, result){
+      if (err) {
+        return console.error("error running query", err);
+      }
+        return result;
+  });
+  }
+module.exports = orderReady(orderNum)
