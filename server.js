@@ -40,12 +40,9 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
 app.get("/", (req, res) => {
-	console.log(returnMenu);
+	// console.log(returnMenu);
     let templateVars = {
     	foodList: returnMenu
     };
