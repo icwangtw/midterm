@@ -49,6 +49,9 @@ app.get("/", (req, res) => {
     res.render("index", templateVars);
 });
 
+app.get("/confirm", (req, res) => {
+    res.render("confirm");
+});
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
