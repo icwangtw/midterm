@@ -5,9 +5,8 @@ const client = require('twilio')(accountSid, authToken);
 
 client.messages
   .create({
-     body: 'A message',
+     body: `Thank you for your order! Your food will be ready in ${estTime} minutes`,
      from: '+16043730358',
-     to: key.swNumber
+     to: key.swNumber //change to login telephone
    })
-  .then(message => console.log(message.sid))
   .done();
