@@ -14,8 +14,8 @@ var knex = require('knex')({
 
 function orderReady (orderNum){
     knex('customers')
-    .join('orders' 'customers.id', '=', 'orders.customer_id')
-    .first('phone')
+    .join('orders', 'customers.id', '=', 'orders.customer_id')
+    .select('phone')
     .where('orders.id', orderNum)
     .asCallback( function (err, result){
       if (err) {
@@ -24,4 +24,6 @@ function orderReady (orderNum){
         return result;
   });
   }
-module.exports = orderReady(orderNum)
+// module.exports = orderReady(orderNum)
+
+console.log(orderReady(1))
