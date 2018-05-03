@@ -12,9 +12,6 @@ $banner-height:3em;
 
 }
 
-
-
-
 body{
   padding-top:65px;
   font-family: $my-font;
@@ -32,3 +29,17 @@ body{
   color: $col-font;
 }
 
+.foodImg{
+  width:150px;
+  height:150px;
+}
+
+td{
+  padding-left: 1em;
+  width:150px;
+  text-align:center;
+}
+
+.myfood{
+  float:left;
+}

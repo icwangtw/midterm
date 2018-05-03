@@ -27,6 +27,7 @@ function makeFoodOrder(order_id,food_id,food_quantity){
       if (err) {
         return console.error("error running query", err);
       }
+      console.log(id)
         return result;
     });
 
@@ -47,7 +48,7 @@ function makeFoodOrder(order_id,food_id,food_quantity){
     // });
   }
 }
-module.exports = makeFoodOrder();
+module.exports = makeFoodOrder;
 
 // knex('customers').insert({name : customer_name},{phone : customer_phone});
 // knex('orders').insert({prep_time: prep_time},{ordered_time: ordered_time},{status: status});
