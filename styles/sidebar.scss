@@ -1,0 +1,11 @@
+@import "layout";
+#sideBar{
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  right:0;
+  top:0;
+  width: 100% - $left-content;
+  border-left-width: 0;
+  @extend %borders;
+}

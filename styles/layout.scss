@@ -1,84 +1,31 @@
-%leftContent{
-  width: 80%;
-
-}
-
-%rightContent{
-  width: 20%;
-
-}
-
+$left-content: 80%;
+$main-col: #F7F9F9;
+$my-font: 'Open Sans', sans-serif;
+$col-font: #3C5D8F;
 
 %borders{
   border-width: 1px;
   border-style: solid;
-  border-color:black;
+  border-color: #7A7E80;
 }
 
-%myFont{
-  font-family: 'Open Sans', sans-serif;
-}
 
-%maincolor{
-  background-color: #F7F9F9;
-}
 
-%goBottom{
-  position: relative;
-  top:95%;
-}
-
-header a{
-  position:fixed;
-  top:0px;
-  overflow:visible;
-  font-size:3em;
-  text-align: center;
-  @extend %myFont;
-  @extend %borders;
-  @extend %leftContent;
-  @extend %maincolor;
-
-}
 
 body{
   padding-top:65px;
-  @extend %myFont;
-  @extend %maincolor;
+  font-family: $my-font;
+  background-color: $main-col;
 
-  div, main{
-    @extend %leftContent;
-    @extend %borders;
-    border-bottom-width: 0;
-  }
-
-  #sideBar{
-    position: fixed;
-    height: 100%;
-    z-index: 1;
-    right:0;
-    top:0;
-    @extend %rightContent;
-    @extend %borders;
-    border-left-width: 0;
-    }
-
-  nav{
-    @extend %leftContent;
-    background-color: blue;
-    position: sticky;
-    top:65px;
-    @extend %borders;
-    border-bottom-width: 0;
-  }
 }
 
-#submitButton{
-  @extend %goBottom;
-  left:5%;
+.restName{
+  text-align: center;
+  width: $left-content;
+  font-family: $my-font;
+  background-color: $main-col;
+  @extend %borders;
+  border-bottom-width: 0;
+  color: $col-font;
 }
 
-.totalAmount{
-  @extend %goBottom;
-  left:10%;
-}

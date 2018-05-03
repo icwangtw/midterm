@@ -1,0 +1,8 @@
+@import "layout";
+
+.content{
+  width: $left-content;
+  @extend %borders;
+  border-bottom-width: 0;
+  overflow: auto;
+}
