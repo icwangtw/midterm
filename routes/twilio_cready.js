@@ -3,10 +3,13 @@ const key = require("./key.js")
 const authToken = key.twilio_key
 const client = require('twilio')(accountSid, authToken);
 
-client.messages
+module.exports = notify = () => {
+  client.messages
   .create({
      body: 'Your food is ready!',
      from: '+16043730358',
      to: key.swNumber //change to login telephone
    })
   .done();
+}
+

@@ -18,6 +18,8 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
+const sendReadySMS = require("./routes/twilio_cready.js")
+const sendTimeSMS = require("./routes/twilio_ctime.js")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -59,11 +61,15 @@ app.post("/sms", (req, res) => {
     console.log("the food is ready!")
     let orderNum = req.body.Body.slice(6, 8)
     console.log(orderNum)
+    sendReadySMS()
+    //call outbound SMS function - ready
+    //pass ready ajaxcall to confirmation page
   }
   else {
     console.log(timeResponse)
     let orderNum = req.body.Body.slice(3, 5)
     console.log(orderNum)
+    sendTimeSMS(timeResponse)
     //call outbound SMS function - time
     //pass repondTime to confirmation page and do a ajax call there
   }
