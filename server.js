@@ -17,7 +17,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
-
+const makeFoodOrder = require("./routes/makeFoodOrder.js")
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -45,7 +45,23 @@ app.get("/", (req, res) => {
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
-      foodDrink: returnMenu.catThree,
+      fooditem: returnMenu.catThree,
+    };
+    res.render("index", templateVars);
+});
+
+//Ordering food
+app.get("/order", (req, res) => {
+	   
+  // let order_id = req.body.order_id;
+  let food_id = req.body.food_id;
+  let food_quantity = req.body.food_quantity;
+    
+  // makeFoodOrder(order_id, food_id, food_quantity)
+  makeFoodOrder('temporary', '3', '2');
+
+  let templateVars = {
+      food_status: returnMenu.catThree,
     };
     res.render("index", templateVars);
 });
