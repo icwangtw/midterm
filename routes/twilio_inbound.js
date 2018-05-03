@@ -8,17 +8,17 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/sms', (req, res) => {
-  console.log(req.body.Body)
   const twiml = new MessagingResponse();
-
-  if (req.body.Body == 'hello') {
-    twiml.message('Hi!');
-  } else if (req.body.Body == 'bye') {
-    twiml.message('Goodbye');
-  } else {
-    twiml.message(
-      'No Body param match, Twilio sends this in the request to your server.'
-    );
+  if (typeof(parseint(req.body.Body))) === number {
+    let respondTime = parseInt(req.body.Body)
+    //call outbound SMS function - time
+    //pass repondTime to confirmation page and do a ajax call there
+  }
+  else if (req.body.Body == 'Ready') {
+    //call outbound SMS function - ready
+    //do a ajax call there at confirmation page
+  }
+  else { twiml.message('Unable to recognize message');
   }
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });
