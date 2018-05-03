@@ -42,9 +42,10 @@ app.use("/api/users", usersRoutes(knex));
 // Home page
 
 app.get("/", (req, res) => {
-	// console.log(returnMenu);
     let templateVars = {
-    	foodList: returnMenu
+    	foodEntree: returnMenu.catOne,
+      foodSnack: returnMenu.catTwo,
+      foodDrink: returnMenu.catThree,
     };
     res.render("index", templateVars);
 });

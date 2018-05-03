@@ -1,0 +1,13 @@
+@import "layout";
+
+body nav{
+  width: $left-content;
+  background-color: $main-col;
+  position: sticky;
+  top:65px;
+  @extend %borders;
+  border-bottom-width: 0;
+  color: $col-font;
+}
+
+
