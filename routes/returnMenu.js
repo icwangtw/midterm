@@ -11,21 +11,23 @@ var knex = require('knex')({
   host     : settings.hostname,
   }
 });
-function returningFoodItems (categoryID, exportName){
-    knex('foods')
-    .select('*')
-    .orderBy('id','asc')
-    .where('category_id', categoryID)
-    .asCallback( function (err, result){
-      if (err) {
-        return console.error("error running query", err);
-      }
-      exports[exportName] = result;
-        return result;
 
+var returningFoodItems = (categoryID, exportName) => {
+  knex('foods')
+  .select('*')
+  .orderBy('id','asc')
+  .where('category_id', categoryID)
+  .asCallback( function (err, result){
+    if (err) {
+      return console.error("error running query", err);
+    }
+    exports[exportName] = result;
+      return result;
   });
-  }
 
-    returningFoodItems("1", "catOne");
-    returningFoodItems("2", "catTwo");
-    returningFoodItems("3", "catThree");
+}
+
+returningFoodItems("1", "catOne");
+returningFoodItems("2", "catTwo");
+returningFoodItems("3", "catThree");
+
