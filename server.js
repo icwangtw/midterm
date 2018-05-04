@@ -18,8 +18,12 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
+
+const makeFoodOrder = require("./routes/makeFoodOrder.js")
+
 const sendReadySMS = require("./routes/twilio_cready.js")
 const sendTimeSMS = require("./routes/twilio_ctime.js")
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -47,7 +51,22 @@ app.get("/", (req, res) => {
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
-      foodDrink: returnMenu.catThree,
+      fooditem: returnMenu.catThree,
+    };
+    res.render("index", templateVars);
+});
+
+//Ordering food
+app.get("/order", (req, res) => {
+
+  let food_id = req.body.food_id;
+  let food_quantity = req.body.food_quantity;
+    
+  // makeFoodOrder(order_id, food_id, food_quantity)
+  makeFoodOrder('temporary', '3', '2');
+
+  let templateVars = {
+      food_status: returnMenu.catThree,
     };
     res.render("index", templateVars);
 });
