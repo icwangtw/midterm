@@ -16,42 +16,50 @@ var order_id,food_id,food_quantity;
 //Insert into food_orders table  
 function generateOrder(){
       knex('orders')
-            .returning('id')
-            .insert({status: 'ordering'})
-            .asCallback( function (err, result){
-              if (err) {
-                return console.error("error running query", err);
-              }
-              console.log(result)
-                return result;
-            });
+      .select('*')
+      .insert({status: 'ordering'})
+      .returning('id')
+      .asCallback( function (err, result){
+        if (err) {
+          return console.error("error running query", err);
+        }else{
+          return result[0];
+        }
+        knex.destroy();
+      });
 }
 
 function makeFoodOrder(order_id,food_id,food_quantity){
 
     knex('food_orders')
-            .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
-            .asCallback( function (err, result){
-              if (err) {
-                return console.error("error running query", err);
-              }
-            });       
+    .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
+    .asCallback( function (err, result){
+      if (err) {
+        return console.error("error running query", err);
+      }else{
+        return result;
+      }
+      knex.destroy();
+    });       
  
 }
 
 function orderTotal(customer_id){
   knex('orders')
-    .join('food_orders','orders.id','=','food_orders.order_id')
-    .where({customer_id: customer_id})
-    .asCallback( function (err, result){
-      if (err) {
-        return console.error("error running query", err);
-      }
-      console.log(result)
-        return result;
-    });
+  .join('food_orders','orders.id','=','food_orders.order_id')
+  .where({customer_id: customer_id})
+  .asCallback( function (err, result){
+    if (err) {
+      return console.error("error running query", err);
+    }else{
+     return result
+    }
+    knex.destroy();
+  });
 }
 
+// console.log(generateOrder());
+console.log(generateOrder())
 
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
