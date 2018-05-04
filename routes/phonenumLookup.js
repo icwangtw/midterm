@@ -15,15 +15,13 @@ var knex = require('knex')({
 orderReady = (orderNum) => {
     knex('customers')
     .join('orders', 'customers.id', '=', 'orders.customer_id')
-    .select('phone')
-    .where('orders.id', orderNum)
-    .asCallback( function (err, result){
-      if (err) {
-        return console.error("error running query", err);
-      }
-        return result;
-  });
+    .select('customers.phone')
+    .where({'orders.id': orderNum})
+    .then((arrayOfResults) => arrayOfResults[0].phone)
+    .catch(function(error) {
+    console.error(error);
+    })
   }
-// module.exports = orderReady(orderNum)
 
-console.log(orderReady(1))
+
+console.log(orderReady(3))
