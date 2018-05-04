@@ -49,16 +49,10 @@ app.use("/api/users", usersRoutes(knex));
 
 app.get("/", (req, res) => {
     let templateVars = {
-<<<<<<< HEAD
-    	foodEntree: returnMenu(3,'icecream'),
-      foodSnack: returnMenu(2,'snack')
-=======
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
->>>>>>> 78dfc12f07c9570c2d73d319bc739dac3a831d45
     };
-    console.log(returnMenu(2,'snack'));
     res.render("index", templateVars);
 });
 
