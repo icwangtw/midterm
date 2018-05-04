@@ -1,18 +1,18 @@
 //errors and inputs
 $(function() {
-   $("#submitButton").on("click", function(event){
+   $(".submitButton").on("click", function(event){
     event.preventDefault();
+    let $button = $(this);
       $.ajax({
         method: 'POST',
         url: '/orders',
         data:
           {
-            amount:$("#inputAmount").serialize(),
-            id:$("#myFoodId").serialize()
+            amount:$button.siblings(".inputAmount").serialize(),
+            id:$button.siblings(".myFoodId").serialize()
           },
         success:
           grabOrder
-      });
-
+    });
   });
 });

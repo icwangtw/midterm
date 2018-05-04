@@ -69,8 +69,8 @@ const setPrepTime = (order_id,prep_time) => {
     knex.destroy();
   });
 }
-ma
-console.log(generateOrder());
+
+
 
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;

@@ -8,10 +8,10 @@
       <div class="modal-body">
         <img src="/foodpics/<%=foodItem.id%>.jpg"> <br><%=foodItem.description%><br>
         $<%= (foodItem.price/100).toFixed(2) %><br>
-        <form id= "myOrder">
-          <input id= "inputAmount" name="quantity" value= "1"></input>
-          <input id="submitButton" type="submit" value="Add to Cart" data-dismiss="modal">
-          <input id= "myFoodId" type="hidden" name="food_id" value=<%=foodItem.id%>></input>
+        <form class= "myOrder">
+          <input class= "inputAmount" name="quantity" value= "1"></input>
+          <input class="submitButton" type="submit" value="Add to Cart" data-dismiss="modal">
+          <input class= "myFoodId" type="hidden" name="food_id" value=<%=foodItem.id%>></input>
         </form>
       </div>
   </div>
