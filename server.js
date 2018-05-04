@@ -51,15 +51,18 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-    orderid = makeFoodOrder.generateOrder()
+    orderid = makeFoodOrder.generateOrder();
     res.render("index", templateVars);
 });
 
-// //Ordering food
+//Ordering food
+// app.post("/orders", (req, res) => {
+//   let food_id = req.body.food_id;
+//   let quantity = req.body.quantity;
+//   makeFoodOrder.makeFoodOrder(orderid, food_id, quantity);
+// });
 app.post("/orders", (req, res) => {
-  let food_id = req.body.food_id;
-  let quantity = req.body.quantity;
-  makeFoodOrder.makeFoodOrder(orderid, food_id, quantity);
+  console.log(req.body)
 });
 
 

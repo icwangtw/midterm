@@ -70,8 +70,6 @@ const setPrepTime = (order_id,prep_time) => {
   });
 }
 
-console.log(generateOrder());
-
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
 exports.orderTotal = orderTotal;
