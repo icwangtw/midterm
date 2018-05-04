@@ -31,7 +31,6 @@ const sendTimeSMS = require("./routes/twilio_ctime.js")
 app.use(morgan('dev'));
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
@@ -57,22 +56,13 @@ app.get("/", (req, res) => {
 });
 
 //Ordering food
-app.get("/order", (req, res) => {
-
-  let food_id = req.body.food_id;
-  let food_quantity = req.body.food_quantity;
-
-  // makeFoodOrder(order_id, food_id, food_quantity)
-  makeFoodOrder('temporary', '3', '2');
-
-  let templateVars = {
-      food_status: returnMenu.catThree,
-    };
-    res.render("index", templateVars);
+app.post("/orders", (req, res) => {
+  console.log(req.body)
 });
 
 
 app.post("/confirm", (req, res) => {
+
 
 });
 

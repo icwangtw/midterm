@@ -9,9 +9,9 @@
         <img src="/foodpics/<%=foodItem.id%>.jpg"> <br><%=foodItem.description%><br>
         $<%= (foodItem.price/100).toFixed(2) %><br>
         <form id= "myOrder" method="POST" action ="/orders">
-          <input type="hidden" value= "<%=foodItem.id %>"></input>
-          <input id= "inputAmount" name="text" value= "1"></input>
+          <input id= "inputAmount" name="quantity" value= "1"></input>
           <input id="submitButton" type="submit" value="Add to Cart">
+          <input type="hidden" name="food_id" value=<%=foodItem.id%>></input>
         </form>
       </div>
   </div>
