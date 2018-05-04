@@ -26,6 +26,6 @@ function returningFoodItems (categoryID, exportName){
   });
   }
 
-    returningFoodItems("1", "catOne");
-    returningFoodItems("2", "catTwo");
-    returningFoodItems("3", "catThree");
+    // returningFoodItems("1", "catOne");
+    // returningFoodItems("2", "catTwo");
+    // returningFoodItems("3", "catThree");
