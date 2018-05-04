@@ -33,10 +33,10 @@ const makeFoodOrder = (order_id,food_id,food_quantity) => {
 
 }
 
-const orderTotal = (customer_id) => {
-  return knex('orders')
-          .join('food_orders','orders.id','=','food_orders.order_id')
-          .where({customer_id: customer_id})
+const orderTotal = (order_id) => {
+  return knex('food_orders')
+          .select('food_id','quantity')
+          .where({order_id: order_id})
           .then((arrayOfResults) => arrayOfResults)
           .catch(function(err){
             console.error("error running query", err);

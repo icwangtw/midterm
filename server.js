@@ -69,11 +69,22 @@ app.post("/orders", (req, res) => {
   makeFoodOrder.makeFoodOrder(orderId, food_id, quantity);
 });
 
+//Show complete order
+app.post("/orders/id", (req, res) => {
+    makeFoodOrder.orderTotal(orderId) 
+      .then((allTheOrders) => {
+        templateVars = { totalOrder: allTheOrders }
+        res.render("index", templateVars);
+    })
+})
 
 app.post("/confirm", (req, res) => {
-
-
+  //take in customer name and phone and add to database
+  //redirect to confirm pafe
+  //send text to restaurant
 });
+
+
 
 app.post("/sms", (req, res) => {
   const twiml = new MessagingResponse();
