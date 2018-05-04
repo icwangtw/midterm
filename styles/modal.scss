@@ -1,0 +1,21 @@
+@import "layout";
+.modal-header{
+  text-align:center;
+  font-weight: bold;
+  font-size:1.5em;
+  color:$col-font;
+  background-color:$main-col;
+}
+.modal-body img{
+ max-width:100%;
+}
+
+.modal-body{
+  color:$col-font;
+  background-color:$main-col;
+
+}
+
+#inputAmount{
+  width:1.5em;
+}

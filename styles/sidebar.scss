@@ -1,24 +1,45 @@
 @import "layout";
 
-@media (min-width: 651px) {
+// @media (min-width: 651px) {
   #sideBar{
+    background-color: #333333;
     position: fixed;
     height: 100%;
     z-index: 1;
     right:0;
     top:0;
     width: 100% - $left-content;
-    border-left-width: 0;
   }
+// }
+
+
+// @media (max-width: 650px) {
+//   #sideBar {
+//     z-index: 1;
+//     left:0;
+//     width:100%;
+//     border-top-width: 0;
+//     background-color: red;
+//   }
+// }
+
+
+#checkoutButton{
+  color:$main-col;
+  font-size:2em;
+  text-align:center;
+  height:$pad-banner;
 }
 
+.totalAmount{
+  font-size:2em;
+  float:right;
+}
 
-@media (max-width: 650px) {
-  #sideBar {
-    z-index: 1;
-    left:0;
-    width:100%;
-    border-top-width: 0;
-    background-color: red;
-  }
+#checkoutButton:hover{
+  background-color:green;
+  color:$main-col;
+  font-size:2em;
+  text-align:center;
+  height:$pad-banner;
 }
