@@ -1,0 +1,17 @@
+<td>
+  <img class="foodImg" src="/foodpics/<%=foodItem.id%>.jpg"type:"button" class" btn btn-danger" data-toggle="modal" data-target="#myModal-<%=foodItem.id%>"><br>
+</td>
+<div id="myModal-<%=foodItem.id%>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><%=foodItem.name%></div>
+      <div class="modal-body">
+        <img src="/foodpics/<%=foodItem.id%>.jpg"> <%=foodItem.description%><br>
+        $<%= (foodItem.price/100).toFixed(2) %><br>
+        <form id= "myOrder" method="POST" action ="/orders">
+          <input id= "inputAmount" name="text" value= "1"></input>
+          <input id="submitButton" type="submit" value="Add to Cart">
+        </form>
+      </div>
+  </div>
+</div>
