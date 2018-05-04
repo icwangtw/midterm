@@ -25,4 +25,11 @@ var returningFoodItems = (categoryID, exportName) => {
     exports[exportName] = result;
       return result;
   });
+
 }
+
+
+    returningFoodItems("1", "catOne");
+    returningFoodItems("2", "catTwo");
+    returningFoodItems("3", "catThree");
+

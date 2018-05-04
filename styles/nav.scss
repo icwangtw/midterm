@@ -4,10 +4,19 @@ body nav{
   width: $left-content;
   background-color: $main-col;
   position: sticky;
-  top:65px;
-  @extend %borders;
-  border-bottom-width: 0;
+  top:$pad-banner;
   color: $col-font;
+  font-size: 1.5em;
+  text-align:center;
+
 }
 
+body nav *{
+  padding-left:1em;
+  cursor:default;
+  color:$col-font;
+}
 
+body nav *:hover{
+  color:$col-font;
+}
