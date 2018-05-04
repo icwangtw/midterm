@@ -18,9 +18,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
-
 const makeFoodOrder = require("./routes/makeFoodOrder.js")
-
 const sendReadySMS = require("./routes/twilio_cready.js")
 const sendTimeSMS = require("./routes/twilio_ctime.js")
 
@@ -66,8 +64,6 @@ app.post("/orders", (req, res) => {
 
 
 app.post("/confirm", (req, res) => {
-
-
 });
 
 app.post("/sms", (req, res) => {
