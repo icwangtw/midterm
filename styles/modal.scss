@@ -1,13 +1,15 @@
 @import "layout";
 .modal-header{
-  text-align:center;
+  text-align: center;
   font-weight: bold;
-  font-size:1.5em;
-  color:$col-font;
-  background-color:$main-col;
+  font-size: 1.5em;
+  color: $col-font;
+  background-color: $main-col;
 }
 .modal-body img{
- max-width:100%;
+ max-width: 100%;
+ margin-left:auto;
+ margin-right:auto;
 }
 
 .modal-body{
@@ -18,4 +20,8 @@
 
 #inputAmount{
   width:1.5em;
+}
+
+.modal-open {
+  overflow: scroll;
 }
