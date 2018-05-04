@@ -14,61 +14,46 @@ const knex = require('knex')({
 
 
 //Insert into food_orders table
+// () => Promise<{id: orderId}>
 const generateOrder = () => {
-    knex('orders')
-    .select('*')
-    .insert({status: 'ordering'})
-    .returning('id')
-    .asCallback( function (err, result){
-      if (err) {
-        return console.error("error running query", err);
-      }else{
-        return result[0];
-      }
-    knex.destroy();
-    });
+  return knex('orders')
+          .select('*')
+          .insert({status: 'ordering'})
+          .returning('id')
+          .then((arrayOfResults) => arrayOfResults[0])
 }
 
 const makeFoodOrder = (order_id,food_id,food_quantity) => {
-    knex('food_orders')
-    .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
-    .asCallback( function (err, result){
-      if (err) {
-        return console.error("error running query", err);
-      }else{
-        return result;
-      }
-    knex.destroy();
-    });
+  return knex('food_orders')
+          .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
+          .then((arrayOfResults) => arrayOfResults)
+          .catch(function(err){
+            console.error("error running query", err);
+          })
+
 }
 
 const orderTotal = (customer_id) => {
-  knex('orders')
-  .join('food_orders','orders.id','=','food_orders.order_id')
-  .where({customer_id: customer_id})
-  .asCallback( function (err, result){
-    if (err) {
-      return console.error("error running query", err);
-    }else{
-     return result
-    }
-  knex.destroy();
-  });
+  return knex('orders')
+          .join('food_orders','orders.id','=','food_orders.order_id')
+          .where({customer_id: customer_id})
+          .then((arrayOfResults) => arrayOfResults)
+          .catch(function(err){
+            console.error("error running query", err);
+          })
 }
 
 const setPrepTime = (order_id,prep_time) => {
-  knex('orders')
-  .insert({prep_time : prep_time})
-  .where({order_id: order_id})
-  .asCallback( function (err, result){
-    if (err) {
-      return console.error("error running query", err);
-    }else{
-     return result
-    }
-    knex.destroy();
-  });
+  return knex('orders')
+          .select('*')
+          .insert({prep_time : prep_time})
+          .where({id: order_id})
+          .then((arrayOfResults) => arrayOfResults)
+          .catch(function(err){
+            console.error("error running query", err);
+          })
 }
+
 
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
