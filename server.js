@@ -45,6 +45,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
+let orderid = ""
 
 app.get("/", (req, res) => {
     let templateVars = {
@@ -52,12 +53,15 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
+    orderid = makeFoodOrder.generateOrder()
     res.render("index", templateVars);
 });
 
 // //Ordering food
 app.post("/orders", (req, res) => {
-  console.log(req.body)
+  let food_id = req.body.food_id;
+  let quantity = req.body.quantity;
+  makeFoodOrder.makeFoodOrder(orderid, food_id, quantity);
 });
 
 
