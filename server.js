@@ -18,9 +18,11 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
-const makeFoodOrder = require("./routes/makeFoodOrder.js")
-const sendReadySMS = require("./routes/twilio_cready.js")
-const sendTimeSMS = require("./routes/twilio_ctime.js")
+
+const makeFoodOrder = require("./routes/makeFoodOrder")
+
+const sendReadySMS = require("./routes/twilio_cready")
+const sendTimeSMS = require("./routes/twilio_ctime")
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -43,7 +45,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-let orderid = ""
+let orderId = "" 
 
 app.get("/", (req, res) => {
     let templateVars = {
@@ -51,23 +53,38 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-    orderid = makeFoodOrder.generateOrder();
-    res.render("index", templateVars);
-});
+    makeFoodOrder.generateOrder()
+      .then((orderid) => {
+        orderId = orderid
+        res.render("index", templateVars);
+      })
+    });
 
-//Ordering food
-// app.post("/orders", (req, res) => {
-//   let food_id = req.body.food_id;
-//   let quantity = req.body.quantity;
-//   makeFoodOrder.makeFoodOrder(orderid, food_id, quantity);
-// });
+// //Ordering food
 app.post("/orders", (req, res) => {
-  console.log(req.body)
+  let food_id = req.body.id.slice(4);
+  let quantity = req.body.amount.slice(4);
+  console.log(food_id, quantity)
+  console.log(orderId)
+  makeFoodOrder.makeFoodOrder(orderId, food_id, quantity);
 });
 
+//Show complete order
+app.post("/orders/id", (req, res) => {
+    makeFoodOrder.orderTotal(orderId) 
+      .then((allTheOrders) => {
+        templateVars = { totalOrder: allTheOrders }
+        res.render("index", templateVars);
+    })
+})
 
 app.post("/confirm", (req, res) => {
+  //take in customer name and phone and add to database
+  //redirect to confirm pafe
+  //send text to restaurant
 });
+
+
 
 app.post("/sms", (req, res) => {
   const twiml = new MessagingResponse();
