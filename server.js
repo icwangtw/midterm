@@ -58,8 +58,7 @@ app.get("/", (req, res) => {
 
 //Ordering food
 app.get("/order", (req, res) => {
-	   
-  // let order_id = req.body.order_id;
+
   let food_id = req.body.food_id;
   let food_quantity = req.body.food_quantity;
     

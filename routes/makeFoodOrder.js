@@ -14,41 +14,48 @@ var knex = require('knex')({
 
 var order_id,food_id,food_quantity;
 //Insert into food_orders table  
+function generateOrder(){
+      knex('orders')
+            .returning('id')
+            .insert({status: 'ordering'})
+            .asCallback( function (err, result){
+              if (err) {
+                return console.error("error running query", err);
+              }
+              console.log(result)
+                return result;
+            });
+}
 
 function makeFoodOrder(order_id,food_id,food_quantity){
-  if(order_id === 'temporary'){
-    console.log("makeFoodOrder => inside");
-    // knex('orders').insert({order_id: order_id},{customer_id: customer_id},{prep_time : prep_time},
-    //                            {ordered_time: ordered_time},{status: status});
-    knex('orders')
-    .returning('id')
-    .insert({customer_id: '3'},{prep_time : '15'},{ordered_time: '2018-10-19 10:23:54+02'},{status: 'in progress'})
+
+    knex('food_orders')
+            .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
+            .asCallback( function (err, result){
+              if (err) {
+                return console.error("error running query", err);
+              }
+            });       
+ 
+}
+
+function orderTotal(customer_id){
+  knex('orders')
+    .join('food_orders','orders.id','=','food_orders.order_id')
+    .where({customer_id: customer_id})
     .asCallback( function (err, result){
       if (err) {
         return console.error("error running query", err);
       }
-      console.log(id)
+      console.log(result)
         return result;
     });
-
-  }else{
-  
-    // // let returnFoods = knex('food_orders')
-    // knex('food_orders').insert({food_id: food_id},{order_id: ordered_id},{quantity : food_quantity});
-    // .then( function (result) {
-    //       // res.json({ success: true, message: 'ok' });     // respond back to request
-    //       console.log(result);
-    //    })
-
-    // .asCallback( function (err, result){
-    //   if (err) {
-    //     return console.error("error running query", err);
-    //   }
-    //     return result;
-    // });
-  }
 }
-module.exports = makeFoodOrder;
+
+
+exports.generateOrder = generateOrder;
+exports.makeFoodOrder = makeFoodOrder;
+exports.orderTotal = orderTotal;
 
 // knex('customers').insert({name : customer_name},{phone : customer_phone});
 // knex('orders').insert({prep_time: prep_time},{ordered_time: ordered_time},{status: status});
