@@ -3,10 +3,10 @@ const key = require("./key.js")
 const authToken = key.twilio_key
 const client = require('twilio')(accountSid, authToken);
 
-module.exports = notify = (order) => {
+module.exports = notify = (orderId, orderString) => {
 client.messages
   .create({
-     body: `${order} Please respond with time estimate.` //orderJOINfoods_order.knex
+     body: `OrderID:${orderID}, ${orderString} Please respond with time estimate.`,
      from: '+16043730358',
      to: key.swNumber //change to restaurant telephone
    })

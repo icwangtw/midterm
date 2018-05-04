@@ -21,6 +21,9 @@ const generateOrder = () => {
           .insert({status: 'ordering'})
           .returning('id')
           .then((arrayOfResults) => arrayOfResults[0])
+          .catch(function(err){
+            console.error("error running query", err);
+          })
 }
 
 const makeFoodOrder = (order_id,food_id,food_quantity) => {
@@ -53,7 +56,6 @@ const setPrepTime = (order_id,prep_time) => {
             console.error("error running query", err);
           })
 }
-
 
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
