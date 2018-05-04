@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
     res.render("index", templateVars);
 });
 
-//Ordering food
+// //Ordering food
 app.post("/orders", (req, res) => {
   console.log(req.body)
 });

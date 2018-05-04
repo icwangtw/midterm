@@ -34,10 +34,11 @@
 .totalAmount{
   font-size:2em;
   float:right;
+  padding-right:0.5em;
 }
 
 #checkoutButton:hover{
-  background-color:#F7F9F9;
+  background-color:#008141;
   color:$main-col;
   font-size:2em;
   text-align:center;
