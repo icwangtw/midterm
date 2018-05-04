@@ -12,7 +12,7 @@ var knex = require('knex')({
   }
 });
 
-function orderReady(orderNum){
+orderReady = (orderNum) => {
     knex('customers')
     .join('orders', 'customers.id', '=', 'orders.customer_id')
     .select('phone')
