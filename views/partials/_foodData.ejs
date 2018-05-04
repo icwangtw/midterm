@@ -6,9 +6,10 @@
     <div class="modal-content">
       <div class="modal-header"><%=foodItem.name%></div>
       <div class="modal-body">
-        <img src="/foodpics/<%=foodItem.id%>.jpg"> <%=foodItem.description%><br>
+        <img src="/foodpics/<%=foodItem.id%>.jpg"> <br><%=foodItem.description%><br>
         $<%= (foodItem.price/100).toFixed(2) %><br>
         <form id= "myOrder" method="POST" action ="/orders">
+          <input type="hidden" value= "<%=foodItem.id %>"></input>
           <input id= "inputAmount" name="text" value= "1"></input>
           <input id="submitButton" type="submit" value="Add to Cart">
         </form>
