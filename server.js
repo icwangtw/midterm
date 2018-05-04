@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
-      fooditem: returnMenu.catThree,
+      foodDrink: returnMenu.catThree,
     };
     res.render("index", templateVars);
 });
@@ -61,7 +61,7 @@ app.get("/order", (req, res) => {
 
   let food_id = req.body.food_id;
   let food_quantity = req.body.food_quantity;
-    
+
   // makeFoodOrder(order_id, food_id, food_quantity)
   makeFoodOrder('temporary', '3', '2');
 
