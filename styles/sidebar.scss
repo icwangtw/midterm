@@ -1,7 +1,5 @@
 @import "layout";
-
-// @media (min-width: 651px) {
-  #sideBar{
+#sideBar{
     background-color: #333333;
     position: fixed;
     height: 100%;
@@ -10,31 +8,23 @@
     top:0;
     width: 100% - $left-content;
   }
-// }
-
-
-// @media (max-width: 650px) {
-//   #sideBar {
-//     z-index: 1;
-//     left:0;
-//     width:100%;
-//     border-top-width: 0;
-//     background-color: red;
-//   }
-// }
-
 
 #checkoutButton{
+  position: absolute;
+  bottom:0;
   color:$main-col;
   font-size:2em;
   text-align:center;
   height:$pad-banner;
+  width: 100%;
 }
 
 .totalAmount{
   font-size:2em;
-  float:right;
   padding-right:0.5em;
+  position:absolute;
+  bottom:70px;
+  right:0;
 }
 
 #checkoutButton:hover{
@@ -43,4 +33,26 @@
   font-size:2em;
   text-align:center;
   height:$pad-banner;
+  user-select: none;
 }
+
+.orderName{
+  padding-left:0.5em;
+  font-size:1.5em;
+}
+.orderPrice, .orderQuanitiy{
+  float:right;
+  padding: 0.5em;
+}
+
+.orderItem{
+  overflow:auto;
+  background-color:#7a7e80;
+}
+
+#itemList{
+  overflow-y: auto;
+  height:80%;
+}
+
+

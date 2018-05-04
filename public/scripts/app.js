@@ -30,9 +30,3 @@ function grabOrder(orderId){
 
 }
 
-function renderSidebar(orderData){
-
-  // TODO:
-  //  1) generate the HTML
-  //  2) squoosh it into place
-}
