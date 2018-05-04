@@ -46,23 +46,25 @@ app.use("/api/users", usersRoutes(knex));
 let orderid = ""
 
 app.get("/", (req, res) => {
+    orderid = makeFoodOrder.generateOrder();
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-    orderid = makeFoodOrder.generateOrder();
     res.render("index", templateVars);
 });
 
-//Ordering food
-// app.post("/orders", (req, res) => {
-//   let food_id = req.body.food_id;
-//   let quantity = req.body.quantity;
-//   makeFoodOrder.makeFoodOrder(orderid, food_id, quantity);
-// });
 app.post("/orders", (req, res) => {
-  console.log(req.body)
+  console.log("psoting req orders body", req.body);
+  // res.send(req.body);
+  res.send();
+});
+
+app.get("/orders/:orderid", (req, res) => {
+  // temporary todo: generate (random) data and send that?
+  // TODO: get the data
+  // TODO: send the data to the front end, d00d
 });
 
 

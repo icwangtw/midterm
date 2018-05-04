@@ -50,7 +50,7 @@ const orderTotal = (customer_id) => {
     if (err) {
       return console.error("error running query", err);
     }else{
-     return result
+     return result;
     }
   knex.destroy();
   });
