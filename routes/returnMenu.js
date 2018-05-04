@@ -21,15 +21,13 @@ var returningFoodItems = (categoryID, exportName) => {
     if (err) {
       return console.error("error running query", err);
     }
-    console.log(result);
     exports[exportName] = result;
       return result;
   });
 
 }
 
-
-    returningFoodItems("1", "catOne");
-    returningFoodItems("2", "catTwo");
-    returningFoodItems("3", "catThree");
+returningFoodItems("1", "catOne");
+returningFoodItems("2", "catTwo");
+returningFoodItems("3", "catThree");
 

@@ -1,7 +1,7 @@
 const pg = require("pg");
 const settings = require("./settings");
 
-var knex = require('knex')({
+const knex = require('knex')({
   client: 'pg',
   version: '7.2',
   connection: {
@@ -13,23 +13,22 @@ var knex = require('knex')({
 });
 
 //Insert into food_orders table  
-function generateOrder(){
-      knex('orders')
-      .select('*')
-      .insert({status: 'ordering'})
-      .returning('id')
-      .asCallback( function (err, result){
-        if (err) {
-          return console.error("error running query", err);
-        }else{
-          return result[0];
-        }
-        knex.destroy();
-      });
+const generateOrder = () => {
+    knex('orders')
+    .select('*')
+    .insert({status: 'ordering'})
+    .returning('id')
+    .asCallback( function (err, result){
+      if (err) {
+        return console.error("error running query", err);
+      }else{
+        return result[0];
+      }
+    knex.destroy();
+    });
 }
 
-function makeFoodOrder(order_id,food_id,food_quantity){
-
+const makeFoodOrder = (order_id,food_id,food_quantity) => {
     knex('food_orders')
     .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
     .asCallback( function (err, result){
@@ -38,12 +37,11 @@ function makeFoodOrder(order_id,food_id,food_quantity){
       }else{
         return result;
       }
-      knex.destroy();
+    knex.destroy();
     });       
- 
 }
 
-function orderTotal(customer_id){
+const orderTotal = (customer_id) => {
   knex('orders')
   .join('food_orders','orders.id','=','food_orders.order_id')
   .where({customer_id: customer_id})
@@ -53,11 +51,11 @@ function orderTotal(customer_id){
     }else{
      return result
     }
-    knex.destroy();
+  knex.destroy();
   });
 }
 
-function setPrepTime(order_id,prep_time){
+const setPrepTime = (order_id,prep_time) => {
   knex('orders')
   .insert({prep_time : prep_time})
   .where({order_id: order_id})
@@ -72,7 +70,7 @@ function setPrepTime(order_id,prep_time){
 }
 
 // console.log(generateOrder());
-console.log(generateOrder())
+console.log(generateOrder());
 
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
