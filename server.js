@@ -53,11 +53,7 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-<<<<<<< HEAD
     orderid = makeFoodOrder.generateOrder()
-=======
-    console.log(returnMenu.catThree);
->>>>>>> f9c7bf4f5649c0e4ff38c90da003e8d5385d5235
     res.render("index", templateVars);
 });
 
