@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
-      fooditem: returnMenu.catThree,
+      foodDrink: returnMenu.catThree,
     };
     res.render("index", templateVars);
 });

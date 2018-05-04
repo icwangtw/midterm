@@ -1,21 +1,23 @@
 $left-content: 80%;
 $main-col: #F7F9F9;
 $my-font: 'Open Sans', sans-serif;
-$col-font: #3C5D8F;
+$col-font: #EB5E00;
 $nav-height: 1em;
 $banner-height:3em;
-
+$pad-banner:60px;
+$sidebar-col:#7A7E80;
 %borders{
-  border-width: 1px;
   border-style: solid;
-  border-color: #7A7E80;
+  border-color: #333333;
+  border-width:0;
 
 }
 
 body{
-  padding-top:65px;
+  padding-top:$pad-banner;
   font-family: $my-font;
   background-color: $main-col;
+  color:$col-font;
 
 }
 
@@ -25,7 +27,7 @@ body{
   font-family: $my-font;
   background-color: $main-col;
   @extend %borders;
-  border-bottom-width: 0;
+  border-bottom-width: 1px;
   color: $col-font;
 }
 
@@ -43,3 +45,4 @@ td{
 .myfood{
   float:left;
 }
+
