@@ -60,6 +60,7 @@ makeFoodOrder.generateOrder()
   });
 });
 
+//Cart confirmation
 app.post("/confirm", (req, res) => {
   let wholeOrder = req.body;
   wholeOrder.cart.forEach(function(element) {
@@ -71,12 +72,14 @@ app.post("/confirm", (req, res) => {
   });
   makeFoodOrder.foodName(orderId)
   .then((result) => {
-    orderNotify(orderId, JSON.stringify(result));
-  });
-
+    let content = "";
+    result.forEach(function(element){
+      content += element.name + " = " + element.quantity + ", ";
+    });
+    orderNotify(orderId, content);
+ })
     res.cookie("orderId", orderId)
     res.json({result:"true"});
-    //res.redirect(302, "confirm")
 });
 
 
@@ -85,7 +88,7 @@ app.get("/confirm", (req, res) => {
   res.render("confirm");
 });
 
-
+//SMS routes
 app.post("/sms", (req, res) => {
   let timeResponse = req.body.Body.slice(0, 2);
   let readyResponse = req.body.Body.slice(0, 5);
