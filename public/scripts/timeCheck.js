@@ -1,10 +1,11 @@
+setInterval(
 function getTime() {
   $.ajax({
     url: '/eta',
     method: 'GET',
     success: function(response){
       console.log(response);
-      if(response === "notReady"){
+      if(response === "Not Ready"){
         console.log("Server said Not Readys");
       } else{
         console.log("its ready");
@@ -17,6 +18,6 @@ function getTime() {
 }
 
 
-$(function() {
-    setInterval(getTime(),5000);
-});
+
+
+, 5000);

@@ -119,9 +119,6 @@ app.get("/eta", (req, res) => {
       else {
         res.send('Not Ready')
       }
-      else{
-        res.send("notReady")
-      }
   })
 })
 
