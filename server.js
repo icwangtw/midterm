@@ -114,7 +114,7 @@ app.get("/eta", (req, res) => {
   .then((result) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
       if (etaTime !== "nu") {
-        res.render("/eta", etaTime)
+        res.send(etaTime)
       }
       else {
         res.send('Not Ready')
