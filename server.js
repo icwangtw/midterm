@@ -47,8 +47,11 @@ app.use("/api/users", usersRoutes(knex));
 let orderId = "";
 
 app.get("/", (req, res) => {
+<<<<<<< HEAD
     orderId = makeFoodOrder.generateOrder();
     console.log(orderId);
+=======
+>>>>>>> 89748beb2435a47311af8e730e805d13798ac027
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
@@ -58,6 +61,7 @@ app.get("/", (req, res) => {
     makeFoodOrder.generateOrder()
       .then((result) => {
         orderId = result
+        console.log(typeof(orderId), orderId)
         res.render("index", templateVars);
       })
     });
