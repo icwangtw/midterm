@@ -52,17 +52,16 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-
     makeFoodOrder.generateOrder()
       .then((result) => {
         orderId = result
-        console.log(typeof(orderId), orderId)
         res.render("index", templateVars);
       })
     });
 
 // //Ordering food
 app.post("/orders", (req, res) => {
+
   let food_id = req.body.id.slice(4);
   let quantity = req.body.amount.slice(4);
   console.log(food_id, quantity)
@@ -71,47 +70,16 @@ app.post("/orders", (req, res) => {
     res.render("index", templateVars);
 });
 
-app.post("/orders", (req, res) => {
-  console.log("psoting req orders body", req.body);
-  // res.send(req.body);
-  res.send();
-});
-
-app.get("/orders/:orderid", (req, res) => {
-  // temporary todo: generate (random) data and send that?
-  // TODO: get the data
-  // TODO: send the data to the front end, d00d
-  
-});
-
-//Show complete order
-app.post("/orders/id", (req, res) => {
-    makeFoodOrder.orderTotal(orderId) 
-      .then((allTheOrders) => {
-        templateVars = { totalOrder: allTheOrders }
-        res.render("index", templateVars);
-    })
-})
-
-app.post("/confirm", (req, res) => {
-  let cName = req.body.name
-  let cPhone = req.body.phone
-  makeFoodOrder.addCInfo(cName, cPhone)
-  .then((result) => {
-    // associate result to orderdb
-  })
-  //take in customer name and phone and add to database
-  makeFoodOrder.orderTotal(orderId)
-  .then((result) => {
-      orderNotify(orderId, result)
-  })
-})
-
 app.get("/confirm", (req, res) => {
   //what do we need in tempate Vars?
+  let wholeOrder = req.body.id;
+  wholeOrder.cart.forEach(function(element) {
+    makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
+  });
+
+  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
   res.render("confirm", templateVars)
 })
-
 
 app.post("/sms", (req, res) => {
   let timeResponse = req.body.Body.slice(0, 2)
