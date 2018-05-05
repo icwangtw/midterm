@@ -44,20 +44,43 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-let orderId = ""
+let orderId = "";
 
 app.get("/", (req, res) => {
-    let templateVars = {
-    	foodEntree: returnMenu.catOne,
+    // let templateVars = ;
+makeFoodOrder.generateOrder()
+  .then((result) => {
+    orderId = result;
+    res.render("index", {
+      foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
-    };
-    makeFoodOrder.generateOrder()
-      .then((result) => {
-        orderId = result
-        res.render("index", templateVars);
-      })
+      CustOrderId: orderId
     });
+  });
+});
+
+app.post("/confirm", (req, res) => {
+  let wholeOrder = req.body;
+  wholeOrder.cart.forEach(function(element) {
+    makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
+    // console.log("orderId,element.id,element.qty = "+orderId,element.id,element.qty);
+  });
+  // console.log("wholeOrder.name,wholeOrder.phone = " +wholeOrder.name,wholeOrder.phone);
+  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
+  res.redirect(302, "confirm")
+})
+
+// //Ordering food
+app.post("/orders", (req, res) => {
+
+  let food_id = req.body.id.slice(4);
+  let quantity = req.body.amount.slice(4);
+  console.log(food_id, quantity)
+  console.log(orderId)
+  makeFoodOrder.makeFoodOrder(orderId, food_id, quantity);
+    res.render("index", templateVars);
+});
 
 app.get("/confirm", (req, res) => {
   //what do we need in tempate Vars?
