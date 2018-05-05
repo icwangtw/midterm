@@ -55,7 +55,6 @@ app.get("/", (req, res) => {
     makeFoodOrder.generateOrder()
       .then((result) => {
         orderId = result
-        console.log(typeof(orderId), orderId)
         res.render("index", templateVars);
       })
     });
