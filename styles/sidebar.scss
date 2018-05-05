@@ -1,12 +1,14 @@
 @import "layout";
 #sideBar{
-    background-color: #333333;
+    background-color: $main-col;
     position: fixed;
     height: 100%;
     z-index: 1;
     right:0;
     top:0;
     width: 100% - $left-content;
+    @extend %borders;
+    border-left-width: 1px;
   }
 
 #checkoutButton{
@@ -17,6 +19,10 @@
   text-align:center;
   height:$pad-banner;
   width: 100%;
+  @extend %borders;
+  border-width: 1px;
+  background-color:$col-font;
+
 }
 
 .amountTotal{
@@ -37,8 +43,8 @@
 }
 
 .orderName{
-  padding-left:0.5em;
-  font-size:1.5em;
+  padding-left:1em;
+  font-size:1.2em;
 }
 .orderPrice, .orderQuanitiy{
   float:right;
@@ -47,7 +53,7 @@
 
 .orderItem{
   overflow:auto;
-  background-color:#7a7e80;
+  color:$col-font;
 }
 
 #itemList{
@@ -55,7 +61,12 @@
   height:80%;
 }
 
-.checkoutButton{
+.textName{
+  position:absolute;
+  left:23%;
+}
+
+.checkoutOrder input, #orderId{
   position:relative;
-  left:40%;
+  left: 42%;
 }

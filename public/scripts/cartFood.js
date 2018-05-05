@@ -27,6 +27,7 @@ $(function() {
     let $button = $(this);
     let inputAmount = $button.siblings(".quantity").val();
     let foodName = $button.siblings(".myFoodName").val();
+    foodName = foodName.replace("_", " ");
     let foodPrice = $button.siblings(".myFoodPrice").val();
     let foodId = $button.siblings(".myFoodId").val();
     if(isNaN(inputAmount)){
@@ -61,7 +62,7 @@ $(function() {
         cart:myOrder,
         total:$button.parentsUntil("#body").find("#total").text(),
       },
-      success: console.log("responsed"),   //need to add get confirm page,
+      success: console.log("responsed"),
       error: function (jqXHR, textStatus, errThrown) {
         console.log("oh god, error!", textStatus);
       },
