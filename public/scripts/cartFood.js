@@ -58,9 +58,7 @@ $(function() {
         phone:$button.siblings(".checkoutPhone").val(),
         orderId:$button.siblings("#orderId").text(),
         cart:myOrder,
-        total:$button
-        .parentsUntil(".body")
-        .find("#total").text() ,
+        total:$button.parentsUntil("#body").find("#total").text(),
 
       },
       success: console.log("responsed"),   //need to add get confirm page,
