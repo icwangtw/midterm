@@ -59,9 +59,8 @@ $(function() {
         orderId:$button.siblings("#orderId").text(),
         cart:myOrder,
         total:$button.parentsUntil("#body").find("#total").text(),
-
       },
-      success: console.log("responsed"),   //need to add get confirm page,
+      success: console.log("responsed"),
       error: function (jqXHR, textStatus, errThrown) {
         console.log("oh god, error!", textStatus);
       },
