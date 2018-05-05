@@ -57,7 +57,19 @@ const setPrepTime = (order_id,prep_time) => {
           })
 }
 
+const foodName = (order_id) => {
+ return knex('food_orders')
+         .join('foods', 'foods.id', '=', 'food_orders.food_id')
+         .select('foods.name','food_orders.quantity')
+         .where({'food_orders.order_id': order_id})
+          .then((arrayOfResults) => arrayOfResults)
+         .catch(function(err){
+           console.error("error running query", err);
+         })
+}
+
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
 exports.orderTotal = orderTotal;
 exports.setPrepTime = setPrepTime;
+exports.foodName = foodName;

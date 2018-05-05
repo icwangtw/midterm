@@ -58,7 +58,7 @@
       <tr class="foodInfoHolder">
           <%foodEntree.forEach(function(foodItem){%>
           <td>
-            <%= foodItem.name %><br>
+            <%= foodItem.name.replace("_"," ") %><br>
             $<%= (foodItem.price/100).toFixed(2) %>
         </td>
           <% }) %>
@@ -77,7 +77,7 @@
       <tr class="foodInfoHolder">
           <%foodSnack.forEach(function(foodItem){%>
         <td>
-            <%= foodItem.name %><br>
+            <%= foodItem.name.replace("_"," ") %><br>
             $<%= (foodItem.price/100).toFixed(2) %>
         </td>
           <% }) %>
@@ -96,7 +96,7 @@
       <tr class="foodInfoHolder">
           <%foodDrink.forEach(function(foodItem){%>
           <td>
-            <%= foodItem.name %><br>
+            <%= foodItem.name.replace("_"," ") %><br>
             $<%= (foodItem.price/100).toFixed(2) %>
         </td>
           <% }) %>

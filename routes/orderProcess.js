@@ -71,9 +71,19 @@ const statusCheck = (orderId) => {
         })
 }
 
+const customerOrder = (cId, orderNum) => {
+  return knex('orders')
+          .where({id:orderNum})
+          .update({customer_id:cId})
+          .catch(function(err){
+          console.error("error running query", err);
+        })
+}
+
 exports.addCInfo = addCInfo;
 exports.insertPrepTime = insertPrepTime;
 exports.phoneNumLookup = phoneNumLookup;
 exports.checkTime = checkTime
 exports.nowReady = nowReady
 exports.statusCheck = statusCheck
+exports.customerOrder = customerOrder

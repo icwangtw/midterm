@@ -2,13 +2,12 @@
 <div id="CheckOutModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"> Hi</div>
+      <div class="modal-header"> Checkout</div>
       <div class="modal-body">
         <form class= "checkoutOrder">
-          Name: <input type="text" class="checkoutName" value="lighthouse"></input><br>
-          Phone Number: <input type="text" class="checkoutPhone" value="888-569-6898"></input><br>
-          <input class="checkoutButton" type="submit" data-dismiss="modal"></input>
-          <span id="orderId"><%=CustOrderId%></span>
+          <span class="textName">Name</span><input type="text" class="checkoutName"></input><br>
+          <span class="textName">Phone Number</span><input type="text" class="checkoutPhone"></input><br>
+          <span  id="orderId">Order Number: <%=CustOrderId%></span><br>          <input class="checkoutButton" type="submit" data-dismiss="modal"></input>
         </form>
       </div>
   </div>

@@ -9,7 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app         = express();
-
+const cookieParser = require('cookie-parser')
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -31,6 +31,7 @@ app.use(morgan('dev'));
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 app.set("view engine", "ejs");
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -57,6 +58,7 @@ makeFoodOrder.generateOrder()
       CustOrderId: orderId
     });
   });
+
 });
 
 app.post("/confirm", (req, res) => {
@@ -64,15 +66,23 @@ app.post("/confirm", (req, res) => {
   wholeOrder.cart.forEach(function(element) {
     makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
   });
-  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
+  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone)
+  .then((result) => {
+    orderProcess.customerOrder(result, orderId);
+  })
+  makeFoodOrder.foodName(orderId)
+  .then((result) => {
+    orderNotify(orderId, JSON.stringify(result));
+  })
+    res.cookie("orderId", orderId)
   res.redirect(302, "confirm")
 })
 
 
 app.get("/confirm", (req, res) => {
-  //what do we need in tempate Vars?
-  res.render("confirm")
-})
+  console.log("working get");
+  res.render("confirm");
+});
 
 
 app.post("/sms", (req, res) => {
@@ -98,12 +108,19 @@ app.post("/sms", (req, res) => {
   res.end();
 });
 
-app.get("/etatime", (req, res) => {
-  orderProcess.checkTime(orderId)
+app.get("/eta", (req, res) => {
+  let thisUser = req.cookies['orderId']
+  orderProcess.checkTime(thisUser)
   .then((result) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
       if (etaTime !== "nu") {
-        res.render("/etatime", etaTime)
+        res.render("/eta", etaTime)
+      }
+      else {
+        res.send('Not Ready')
+      }
+      else{
+        res.send("notReady")
       }
   })
 })
