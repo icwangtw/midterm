@@ -67,7 +67,8 @@ app.post("/confirm", (req, res) => {
     makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
   });
   orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone)
-  .then((result) => { orderProcess.customerOrder(result, orderId);
+  .then((result) => {
+    orderProcess.customerOrder(result, orderId);
   })
   makeFoodOrder.foodName(orderId)
   .then((result) => {
@@ -79,9 +80,9 @@ app.post("/confirm", (req, res) => {
 
 
 app.get("/confirm", (req, res) => {
-  //what do we need in tempate Vars?
-  res.render("confirm")
-})
+  console.log("working get");
+  res.render("confirm");
+});
 
 
 app.post("/sms", (req, res) => {
@@ -117,6 +118,9 @@ app.get("/eta", (req, res) => {
       }
       else {
         res.send('Not Ready')
+      }
+      else{
+        res.send("notReady")
       }
   })
 })
