@@ -19,7 +19,7 @@
   width: 100%;
 }
 
-.totalAmount{
+.amountTotal{
   font-size:2em;
   padding-right:0.5em;
   position:absolute;
@@ -55,4 +55,7 @@
   height:80%;
 }
 
-
+.checkoutButton{
+  position:relative;
+  left:40%;
+}

@@ -34,7 +34,7 @@
     </header>
   </head>
 
-  <body>
+  <body class="body">
     <div class="restName">
       <h1>Lighthouse Foods</h1>
       The HiVE, 128 W Hastings St #300, Vancouver, BC V6B 1G8
@@ -104,13 +104,15 @@
     </table>
   </section>
 </main>
-
-    <section id="sideBar">
-      <div id = "itemList"></div>
-      <div id="checkoutButton">Checkout</div>
-      <span class="totalAmount">$<span id="total">0.00</span></span><br>
-    </section>
+<section id="sideBar">
+  <div id = "itemList"></div><br>
+  <span class="amountTotal">$
+    <span id="total">0.00</span>
+  </span><br>
+  <div id="checkoutButton" data-toggle="modal" data-target="#CheckOutModal">Checkout</div>
+</section>
 
 <img src="https://placekitten.com/g/200/1000">
+  <% include ./partials/_checkout %>
   </body>
 </html>

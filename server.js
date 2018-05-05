@@ -44,20 +44,25 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-let orderId = ""
+let orderId = "";
 
 app.get("/", (req, res) => {
-    let templateVars = {
-    	foodEntree: returnMenu.catOne,
+    // let templateVars = ;
+makeFoodOrder.generateOrder()
+  .then((result) => {
+    orderId = result;
+    res.render("index", {
+      foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
-    };
-    makeFoodOrder.generateOrder()
-      .then((result) => {
-        orderId = result
-        res.render("index", templateVars);
-      })
+      CustOrderId: orderId
     });
+  });
+});
+
+app.post("/confirm", (req, res) => {
+  console.log(req.body);
+})
 
 // //Ordering food
 app.post("/orders", (req, res) => {
