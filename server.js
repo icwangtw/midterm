@@ -47,37 +47,21 @@ app.use("/api/users", usersRoutes(knex));
 let orderId = "";
 
 app.get("/", (req, res) => {
-<<<<<<< HEAD
-    orderId = makeFoodOrder.generateOrder();
-    console.log(orderId);
-=======
->>>>>>> 89748beb2435a47311af8e730e805d13798ac027
-    let templateVars = {
-    	foodEntree: returnMenu.catOne,
+    // let templateVars = ;
+makeFoodOrder.generateOrder()
+  .then((result) => {
+    orderId = result;
+    res.render("index", {
+      foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
       CustOrderId: orderId,
-    };
-    makeFoodOrder.generateOrder()
-      .then((result) => {
-        orderId = result
-        console.log(typeof(orderId), orderId)
-        res.render("index", templateVars);
-      })
     });
+  });
+});
 
 app.post("/confirm", (req, res) => {
-  let cName = req.body.name
-  let cPhone = req.body.phone
-  makeFoodOrder.addCInfo(cName, cPhone)
-  .then((result) => {
-    // associate result to orderdb
-  })
-  //take in customer name and phone and add to database
-  makeFoodOrder.orderTotal(orderId)
-  .then((result) => {
-      orderNotify(orderId, result)
-  })
+  console.log(req.body);
 })
 
 app.get("/confirm", (req, res) => {
