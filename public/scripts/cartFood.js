@@ -49,6 +49,7 @@ $(function() {
     console.log('amount', $button.siblings(".checkoutName").val());
     console.log('number' ,$button.siblings(".checkoutPhone").val());
     console.log('cart', myOrder);
+    console.log('amount', $button.parentsUntil(".body").find("#total").text());
     $.ajax({
       method: 'POST',
       url: '/confirm',
@@ -58,9 +59,7 @@ $(function() {
         phone:$button.siblings(".checkoutPhone").val(),
         orderId:$button.siblings("#orderId").text(),
         cart:myOrder,
-        total:$button
-        .parentsUntil(".body")
-        .find("#total").text() ,
+        total:$button.parentsUntil(".body").find("#total").text() ,
 
       },
       success: console.log("responsed"),   //need to add get confirm page,
