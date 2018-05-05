@@ -9,7 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app         = express();
-
+const cookieParser = require('cookie-parser')
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -31,6 +31,7 @@ app.use(morgan('dev'));
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 app.set("view engine", "ejs");
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -57,6 +58,7 @@ makeFoodOrder.generateOrder()
       CustOrderId: orderId
     });
   });
+
 });
 
 app.post("/confirm", (req, res) => {
@@ -71,11 +73,12 @@ app.post("/confirm", (req, res) => {
   .then((result) => {
     orderNotify(orderId, JSON.stringify(result));
   })
-  // res.redirect(302, "confirm")
+    res.cookie("orderId", orderId)
+  res.redirect(302, "confirm")
 })
 
 
-app.get("/confirm/:id", (req, res) => {
+app.get("/confirm", (req, res) => {
   //what do we need in tempate Vars?
   res.render("confirm")
 })
@@ -104,17 +107,21 @@ app.post("/sms", (req, res) => {
   res.end();
 });
 
-app.get("/etatime/:id", (req, res) => {
-  orderProcess.checkTime(orderId)
+app.get("/eta", (req, res) => {
+  let thisUser = req.cookies['orderId']
+  orderProcess.checkTime(thisUser)
   .then((result) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
       if (etaTime !== "nu") {
-        res.render("/etatime", etaTime)
+        res.render("/eta", etaTime)
+      }
+      else {
+        res.send('Not Ready')
       }
   })
 })
 
-app.get("/readyornot/:id", (req, res) => {
+app.get("/readyornot", (req, res) => {
   orderProcess.statusCheck(orderID)
   .then((result) => {
     let status = (JSON.stringify(result).slice(11, 16))
