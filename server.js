@@ -44,14 +44,16 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-let orderId = ""
+let orderId = "";
 
 app.get("/", (req, res) => {
-    orderid = makeFoodOrder.generateOrder();
+    orderId = makeFoodOrder.generateOrder();
+    console.log(orderId);
     let templateVars = {
     	foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
+      CustOrderId: orderId,
     };
     makeFoodOrder.generateOrder()
       .then((result) => {

@@ -26,7 +26,6 @@ $(function() {
    $(".submitButton").on("click", function(event){
     event.preventDefault();
     let $button = $(this);
-    let orderId = 22;
     let inputAmount = $button.siblings(".quantity").val();
     let foodName = $button.siblings(".myFoodName").val();
     let foodPrice = $button.siblings(".myFoodPrice").val();
