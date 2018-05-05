@@ -6,7 +6,7 @@ function getTime() {
     success: function(response){
       if(response !== "Not Ready"){
         clearInterval(myInterval);
-        $("#status").text("Your food will be ready in "+response);
+        $("#status").text("Your food will be ready in " + response + "mintues!");
       }
     },
     error: function (jqXHR, textStatus, errThrown){

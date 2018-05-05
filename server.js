@@ -115,19 +115,21 @@ app.get("/eta", (req, res) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
       if (etaTime !== "nu") {
         res.send(etaTime)
-      }
-      else {
+      } else {
         res.send('Not Ready')
       }
   })
 })
 
-app.get("/readyornot", (req, res) => {
-  orderProcess.statusCheck(orderID)
+app.get("/ready", (req, res) => {
+  let thisUser = req.cookies['orderId']
+  orderProcess.statusCheck(thisUser)
   .then((result) => {
     let status = (JSON.stringify(result).slice(11, 16))
     if (status == 'ready') {
-      res.render("/ready")
+      res.send('pickup')
+    } else {
+      res.send('nopickup')
     }
   })
 })
