@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-<<<<<<< HEAD
+
     makeFoodOrder.generateOrder()
       .then((orderid) => {
         orderId = orderid
@@ -69,7 +69,6 @@ app.post("/orders", (req, res) => {
   console.log(food_id, quantity)
   console.log(orderId)
   makeFoodOrder.makeFoodOrder(orderId, food_id, quantity);
-=======
     res.render("index", templateVars);
 });
 
@@ -83,7 +82,7 @@ app.get("/orders/:orderid", (req, res) => {
   // temporary todo: generate (random) data and send that?
   // TODO: get the data
   // TODO: send the data to the front end, d00d
->>>>>>> 422fef5d04915eda19d85a179a176a3cc3b8994e
+  
 });
 
 //Show complete order
