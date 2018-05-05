@@ -23,6 +23,7 @@ const sendReadySMS = require("./routes/twilio_cready")
 const sendTimeSMS = require("./routes/twilio_ctime")
 const orderNotify = require("./routes/twilio_rorder")
 const orderProcess = require("./routes/orderProcess")
+const confirmUpdate = require("./public/scripts/confirmUpdate")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -75,7 +76,7 @@ app.post("/confirm", (req, res) => {
 
 app.get("/confirm", (req, res) => {
   //what do we need in tempate Vars?
-  res.render("confirm", templateVars)
+  res.render("confirm")
 })
 
 
@@ -98,6 +99,8 @@ app.post("/sms", (req, res) => {
     .then((result) => {
         sendTimeSMS(JSON.stringify(result).slice(10, 22), timeResponse)
     })
+    confirmUpdate.updateTime(timeResponse)
+
     //pass repondTime to confirmation page and do a ajax call there
   }
   res.end();
