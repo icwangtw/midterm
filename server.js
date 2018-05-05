@@ -84,7 +84,6 @@ app.post("/confirm", (req, res) => {
 
 
 app.get("/confirm", (req, res) => {
-  console.log("working get");
   res.render("confirm");
 });
 
