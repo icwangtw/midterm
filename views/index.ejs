@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Home Page</title>
+<<<<<<< HEAD
 <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 <!-- open sans font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -25,7 +26,6 @@
 <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 <link rel="stylesheet" href="/styles/sidebar.css" type="text/css" />
 <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
-
     <header >
       <span class="header">Restaurant APP</span>
     </header>
@@ -43,73 +43,71 @@
       <a class="navDrink">Drink</a>
     </nav>
 
-<main class="content">
-  <section class = "entree">
-    <h2>Entrees</h2>
-    <table>
-      <tr class="foodImgHolder">
-        <%foodEntree.forEach(function(foodItem){%>
-        <% include ./partials/_foodData %>
-        <% }) %>
-      </tr>
-      <tr class="foodInfoHolder">
-          <%foodEntree.forEach(function(foodItem){%>
-          <td>
-            <%= foodItem.name.replace("_"," ") %><br>
-            $<%= (foodItem.price/100).toFixed(2) %>
-        </td>
-          <% }) %>
-        </tr>
-    </table>
-  </section>
-
-  <section class = "snack">
-    <h2>Snacks</h2>
-    <table>
-      <tr class="foodImgHolder">
-          <%foodSnack.forEach(function(foodItem){%>
+    <main class="content">
+      <section class = "entree">
+        <h2>Entrees</h2>
+        <table>
+          <tr class="foodImgHolder">
+            <%foodEntree.forEach(function(foodItem){%>
             <% include ./partials/_foodData %>
-          <% }) %>
-      </tr>
-      <tr class="foodInfoHolder">
-          <%foodSnack.forEach(function(foodItem){%>
-        <td>
-            <%= foodItem.name.replace("_"," ") %><br>
-            $<%= (foodItem.price/100).toFixed(2) %>
-        </td>
-          <% }) %>
-        </tr>
-    </table>
-  </section>
+            <% }) %>
+          </tr>
+          <tr class="foodInfoHolder">
+              <%foodEntree.forEach(function(foodItem){%>
+              <td>
+                <%= foodItem.name.replace("_"," ") %><br>
+                $<%= (foodItem.price/100).toFixed(2) %>
+            </td>
+              <% }) %>
+            </tr>
+        </table>
+      </section>
 
-  <section class = "drink">
-    <h2>Drinks</h2>
-    <table>
-      <tr class="foodImgHolder">
-          <%foodDrink.forEach(function(foodItem){%>
-            <% include ./partials/_foodData %>
-          <% }) %>
-      </tr>
-      <tr class="foodInfoHolder">
-          <%foodDrink.forEach(function(foodItem){%>
-          <td>
-            <%= foodItem.name.replace("_"," ") %><br>
-            $<%= (foodItem.price/100).toFixed(2) %>
-        </td>
-          <% }) %>
-        </tr>
-    </table>
-  </section>
-</main>
-<section id="sideBar">
-  <div id = "itemList"></div><br>
-  <span class="amountTotal">$
-    <span id="total">0.00</span>
-  </span><br>
-  <div id="checkoutButton" data-toggle="modal" data-target="#CheckOutModal">Checkout</div>
-</section>
+      <section class = "snack">
+        <h2>Snacks</h2>
+        <table>
+          <tr class="foodImgHolder">
+              <%foodSnack.forEach(function(foodItem){%>
+                <% include ./partials/_foodData %>
+              <% }) %>
+          </tr>
+          <tr class="foodInfoHolder">
+              <%foodSnack.forEach(function(foodItem){%>
+            <td>
+                <%= foodItem.name.replace("_"," ") %><br>
+                $<%= (foodItem.price/100).toFixed(2) %>
+            </td>
+              <% }) %>
+            </tr>
+        </table>
+      </section>
 
-<img src="https://placekitten.com/g/200/1000">
-  <% include ./partials/_checkout %>
+      <section class = "drink">
+        <h2>Drinks</h2>
+        <table>
+          <tr class="foodImgHolder">
+              <%foodDrink.forEach(function(foodItem){%>
+                <% include ./partials/_foodData %>
+              <% }) %>
+          </tr>
+          <tr class="foodInfoHolder">
+              <%foodDrink.forEach(function(foodItem){%>
+              <td>
+                <%= foodItem.name.replace("_"," ") %><br>
+                $<%= (foodItem.price/100).toFixed(2) %>
+            </td>
+              <% }) %>
+            </tr>
+        </table>
+      </section>
+    </main>
+    <section id="sideBar">
+      <div id = "itemList"></div><br>
+      <span class="amountTotal">$
+        <span id="total">0.00</span>
+      </span><br>
+      <div id="checkoutButton" data-toggle="modal" data-target="#CheckOutModal">Checkout</div>
+    </section>
+    <% include ./partials/_checkout %>
   </body>
 </html>

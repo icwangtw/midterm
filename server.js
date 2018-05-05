@@ -9,7 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const app         = express();
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -18,11 +18,11 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const returnMenu = require("./routes/returnMenu");
-const makeFoodOrder = require("./routes/makeFoodOrder")
-const sendReadySMS = require("./routes/twilio_cready")
-const sendTimeSMS = require("./routes/twilio_ctime")
-const orderNotify = require("./routes/twilio_rorder")
-const orderProcess = require("./routes/orderProcess")
+const makeFoodOrder = require("./routes/makeFoodOrder");
+const sendReadySMS = require("./routes/twilio_cready");
+const sendTimeSMS = require("./routes/twilio_ctime");
+const orderNotify = require("./routes/twilio_rorder");
+const orderProcess = require("./routes/orderProcess");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -58,7 +58,6 @@ makeFoodOrder.generateOrder()
       CustOrderId: orderId
     });
   });
-
 });
 
 app.post("/confirm", (req, res) => {
@@ -69,16 +68,16 @@ app.post("/confirm", (req, res) => {
   orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone)
   .then((result) => {
     orderProcess.customerOrder(result, orderId);
-  })
+  });
   makeFoodOrder.foodName(orderId)
   .then((result) => {
     orderNotify(orderId, JSON.stringify(result));
-  })
+  });
 
     res.cookie("orderId", orderId)
     res.json({result:"true"});
     //res.redirect(302, "confirm")
-})
+});
 
 
 app.get("/confirm", (req, res) => {
@@ -88,10 +87,10 @@ app.get("/confirm", (req, res) => {
 
 
 app.post("/sms", (req, res) => {
-  let timeResponse = req.body.Body.slice(0, 2)
-  let readyResponse = req.body.Body.slice(0, 5)
+  let timeResponse = req.body.Body.slice(0, 2);
+  let readyResponse = req.body.Body.slice(0, 5);
   if (readyResponse == 'Ready') {
-    let orderNum = parseInt(req.body.Body.slice(6, 8))
+    let orderNum = parseInt(req.body.Body.slice(6, 8));
     orderProcess.nowReady(orderNum)
     orderProcess.phoneNumLookup(orderNum)
     .then((result) => {
@@ -99,7 +98,7 @@ app.post("/sms", (req, res) => {
     })
   }
   else {
-    let orderNum = parseInt(req.body.Body.slice(3, 5))
+    let orderNum = parseInt(req.body.Body.slice(3, 5));
     timeResponse = parseInt(timeResponse);
     orderProcess.insertPrepTime(orderNum, timeResponse);
     orderProcess.phoneNumLookup(orderNum)
@@ -111,20 +110,20 @@ app.post("/sms", (req, res) => {
 });
 
 app.get("/eta", (req, res) => {
-  let thisUser = req.cookies['orderId']
+  let thisUser = req.cookies['orderId'];
   orderProcess.checkTime(thisUser)
   .then((result) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
       if (etaTime !== "nu") {
-        res.send(etaTime)
+        res.send(etaTime);
       } else {
-        res.send('Not Ready')
+        res.send('Not Ready');
       }
-  })
-})
+  });
+});
 
 app.get("/ready", (req, res) => {
-  let thisUser = req.cookies['orderId']
+  let thisUser = req.cookies['orderId'];
   orderProcess.statusCheck(thisUser)
   .then((result) => {
     let status = (JSON.stringify(result).slice(11, 16))

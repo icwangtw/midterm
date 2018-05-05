@@ -1,10 +1,8 @@
-@import "layout";
+@import "variables";
 
 .content{
   width: $left-content;
   overflow: auto;
-
-
 }
 .content section {
   margin-top: 1em;
