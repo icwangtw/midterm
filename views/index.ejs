@@ -44,57 +44,22 @@
     <main class="content">
       <section class = "entree">
         <h2>Entrees</h2>
-        <table>
-          <tr class="foodImgHolder">
+
             <%foodEntree.forEach(function(foodItem){%>
             <% include ./partials/_foodData %>
             <% }) %>
-          </tr>
-          <tr class="foodInfoHolder">
-              <%foodEntree.forEach(function(foodItem){%>
-              <td>
-                <%= foodItem.name.replace("_"," ") %><br>
-                $<%= (foodItem.price/100).toFixed(2) %>
-            </td>
-              <% }) %>
-            </tr>
-        </table>
       </section>
       <section class = "snack">
         <h2>Snacks</h2>
-        <table>
-          <tr class="foodImgHolder">
               <%foodSnack.forEach(function(foodItem){%>
                 <% include ./partials/_foodData %>
               <% }) %>
-          </tr>
-          <tr class="foodInfoHolder">
-              <%foodSnack.forEach(function(foodItem){%>
-            <td>
-                <%= foodItem.name.replace("_"," ") %><br>
-                $<%= (foodItem.price/100).toFixed(2) %>
-            </td>
-              <% }) %>
-            </tr>
-        </table>
       </section>
       <section class = "drink">
         <h2>Drinks</h2>
-        <table>
-          <tr class="foodImgHolder">
               <%foodDrink.forEach(function(foodItem){%>
                 <% include ./partials/_foodData %>
-              <% }) %>
-          </tr>
-          <tr class="foodInfoHolder">
-              <%foodDrink.forEach(function(foodItem){%>
-              <td>
-                <%= foodItem.name.replace("_"," ") %><br>
-                $<%= (foodItem.price/100).toFixed(2) %>
-            </td>
-              <% }) %>
-            </tr>
-        </table>
+               <% }) %>
       </section>
     </main>
     <section id="sideBar">
