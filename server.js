@@ -74,8 +74,10 @@ app.post("/confirm", (req, res) => {
   .then((result) => {
     orderNotify(orderId, JSON.stringify(result));
   })
+
     res.cookie("orderId", orderId)
-  res.redirect(302, "confirm")
+    res.json({result:"true"});
+    //res.redirect(302, "confirm")
 })
 
 
@@ -126,6 +128,7 @@ app.get("/ready", (req, res) => {
   orderProcess.statusCheck(thisUser)
   .then((result) => {
     let status = (JSON.stringify(result).slice(11, 16))
+    console.log(status)
     if (status == 'ready') {
       res.send('pickup')
     } else {
