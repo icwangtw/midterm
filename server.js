@@ -65,20 +65,21 @@ app.post("/confirm", (req, res) => {
     makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
   });
   orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone)
-  .then((result) => { orderProcess.customerOrder(result, orderId);
+  .then((result) => {
+    orderProcess.customerOrder(result, orderId);
   })
   makeFoodOrder.foodName(orderId)
   .then((result) => {
     orderNotify(orderId, JSON.stringify(result));
   })
-  // res.redirect(302, "confirm")
+  res.redirect("confirm");
 })
 
 
-app.get("/confirm/:id", (req, res) => {
-  //what do we need in tempate Vars?
-  res.render("confirm")
-})
+app.get("/confirm", (req, res) => {
+  console.log("working get");
+  res.render("confirm");
+});
 
 
 app.post("/sms", (req, res) => {
@@ -104,12 +105,15 @@ app.post("/sms", (req, res) => {
   res.end();
 });
 
-app.get("/etatime/:id", (req, res) => {
+app.get("/eta", (req, res) => {
   orderProcess.checkTime(orderId)
   .then((result) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
       if (etaTime !== "nu") {
         res.render("/etatime", etaTime)
+      }
+      else{
+        res.send("notReady")
       }
   })
 })
