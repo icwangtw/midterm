@@ -1,3 +1,4 @@
+//checks for server responds
 var myInterval = setInterval(
 function getTime() {
   $.ajax({

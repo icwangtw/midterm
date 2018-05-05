@@ -18,18 +18,18 @@ const addCInfo = (name, phone) => {
           .returning('id')
           .then((arrayOfResults) => arrayOfResults[0])
           .catch(function(err){
-            console.error("error running query", err);
-          })
-}
+            console.error("error addCInfo query", err);
+  });
+};
 
 const insertPrepTime = (orderNum, time) => {
   return knex('orders')
         .where({id:orderNum})
         .update({prep_time:time})
         .catch(function(err){
-          console.error("error running query", err);
-        })
-}
+          console.error("error insertPrepTime query", err);
+  });
+};
 
 const phoneNumLookup = (orderNum) => {
   return knex('customers')
@@ -38,9 +38,9 @@ const phoneNumLookup = (orderNum) => {
         .where('orders.id', orderNum)
         .then((arrayOfResults) => arrayOfResults[0])
         .catch(function(err){
-          console.error("error running query", err);
-        })
-}
+          console.error("error phoneNumLookup query", err);
+  });
+};
 
 const checkTime = (orderId) => {
   return knex('orders')
@@ -48,18 +48,18 @@ const checkTime = (orderId) => {
         .where({id:orderId})
         .then((arrayOfResults) => arrayOfResults[0])
         .catch(function(err){
-          console.error("error running query", err);
-        })
-}
+          console.error("error checkTime query", err);
+  });
+};
 
 const nowReady = (orderId) => {
   return knex('orders')
         .where({id:orderId})
         .update({status:'ready'})
         .catch(function(err){
-          console.error("error running query", err);
-        })
-}
+          console.error("error nowReady query", err);
+  });
+};
 
 const statusCheck = (orderId) => {
   return knex('orders')
@@ -67,18 +67,18 @@ const statusCheck = (orderId) => {
         .where({id:orderId})
         .then((arrayOfResults) => arrayOfResults[0])
         .catch(function(err){
-          console.error("error running query", err);
-        })
-}
+          console.error("error statusCheck query", err);
+  });
+};
 
 const customerOrder = (cId, orderNum) => {
   return knex('orders')
           .where({id:orderNum})
           .update({customer_id:cId})
           .catch(function(err){
-          console.error("error running query", err);
-        })
-}
+          console.error("error customerOrder query", err);
+  });
+};
 
 exports.addCInfo = addCInfo;
 exports.insertPrepTime = insertPrepTime;

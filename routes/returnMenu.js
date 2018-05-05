@@ -21,11 +21,11 @@ var returningFoodItems = (categoryID, exportName) => {
     if (err) {
       return console.error("error running query", err);
     }
-    exports[exportName] = result; 
+    exports[exportName] = result;
       return result;
   });
 
-}
+};
 
 returningFoodItems("1", "catOne");
 returningFoodItems("2", "catTwo");

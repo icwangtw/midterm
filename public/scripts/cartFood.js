@@ -17,7 +17,6 @@ function renderSidebar(qty, name, price){
   $("#total").text(totalPrice);
 }
 
-
 $(function() {
   let myOrder = [];
 
@@ -42,7 +41,6 @@ $(function() {
       });
     }
   });
-
    //sends cart items to server
   $('.checkoutButton').on("click", function(event){
     let $button = $(this);

@@ -22,19 +22,18 @@ const generateOrder = () => {
           .returning('id')
           .then((arrayOfResults) => arrayOfResults[0])
           .catch(function(err){
-            console.error("error running query", err);
-          })
-}
+            console.error("error generateOrder query", err);
+  });
+};
 
 const makeFoodOrder = (order_id,food_id,food_quantity) => {
   return knex('food_orders')
           .insert({food_id: food_id,order_id: order_id, quantity : food_quantity})
           .then((arrayOfResults) => arrayOfResults)
           .catch(function(err){
-            console.error("error running query", err);
-          })
-
-}
+            console.error("error makeFoodOrder query", err);
+  });
+};
 
 const orderTotal = (order_id) => {
   return knex('food_orders')
@@ -42,9 +41,9 @@ const orderTotal = (order_id) => {
           .where({order_id: order_id})
           .then((arrayOfResults) => arrayOfResults)
           .catch(function(err){
-            console.error("error running query", err);
-          })
-}
+            console.error("error orderTotal query", err);
+  });
+};
 
 const setPrepTime = (order_id,prep_time) => {
   return knex('orders')
@@ -53,9 +52,9 @@ const setPrepTime = (order_id,prep_time) => {
           .where({id: order_id})
           .then((arrayOfResults) => arrayOfResults)
           .catch(function(err){
-            console.error("error running query", err);
-          })
-}
+            console.error("error setPrepTime query", err);
+  });
+};
 
 const foodName = (order_id) => {
  return knex('food_orders')
@@ -65,8 +64,8 @@ const foodName = (order_id) => {
           .then((arrayOfResults) => arrayOfResults)
          .catch(function(err){
            console.error("error running query", err);
-         })
-}
+  });
+};
 
 exports.generateOrder = generateOrder;
 exports.makeFoodOrder = makeFoodOrder;
