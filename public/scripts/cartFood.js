@@ -57,7 +57,7 @@ $(function() {
         cart:myOrder,
         total:$button.parentsUntil("#body").find("#total").text(),
       },
-      success: function(){
+      success: function(result){
         window.location = "/confirm";
       },
       error: function (jqXHR, textStatus, errThrown) {

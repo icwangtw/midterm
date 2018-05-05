@@ -74,8 +74,10 @@ app.post("/confirm", (req, res) => {
   .then((result) => {
     orderNotify(orderId, JSON.stringify(result));
   })
+
     res.cookie("orderId", orderId)
-  res.redirect(302, "confirm")
+    res.json({result:"true"});
+    //res.redirect(302, "confirm")
 })
 
 
