@@ -22,7 +22,7 @@
   @extend %borders;
   border-width: 1px;
   background-color:$col-font;
-
+  font-weight:bold;
 }
 
 .amountTotal{
@@ -61,12 +61,12 @@
   height:80%;
 }
 
-.textName{
-  position:absolute;
-  left:23%;
+.checkoutOrder input {
+  position: relative;
+  left: 5px;
+  margin: 5px;
 }
 
-.checkoutOrder input, #orderId{
-  position:relative;
-  left: 42%;
+#orderId {
+  text-align: left;
 }

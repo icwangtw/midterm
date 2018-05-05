@@ -1,4 +1,8 @@
 @import "variables";
+.modal-dialog{
+  width:350px
+}
+
 .modal-header{
   text-align: center;
   font-weight: bold;
@@ -13,7 +17,7 @@
 }
 
 .modal-body{
-  color:$col-font;
+  color:gray;
   background-color:$main-col;
 
 }
@@ -24,4 +28,8 @@
 
 .modal-open {
   overflow: scroll;
+}
+
+.checkoutOrder .textName {
+  text-align: right;
 }
