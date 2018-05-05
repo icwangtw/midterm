@@ -6,7 +6,7 @@ const client = require('twilio')(accountSid, authToken);
 module.exports = notify = (orderId, orderString) => {
 client.messages
   .create({
-     body: `OrderID:${orderID}, ${orderString} Please respond with time estimate.`,
+     body: `OrderID: ${orderId}, ${orderString} Please respond with time estimate.`,
      from: '+16043730358',
      to: key.swNumber //change to restaurant telephone
    })

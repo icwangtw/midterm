@@ -64,12 +64,18 @@ app.post("/confirm", (req, res) => {
   wholeOrder.cart.forEach(function(element) {
     makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
   });
-  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
-  res.redirect(302, "confirm")
+  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone)
+  .then((result) => { orderProcess.customerOrder(result, orderId);
+  })
+  makeFoodOrder.foodName(orderId)
+  .then((result) => {
+    orderNotify(orderId, JSON.stringify(result));
+  })
+  // res.redirect(302, "confirm")
 })
 
 
-app.get("/confirm", (req, res) => {
+app.get("/confirm/:id", (req, res) => {
   //what do we need in tempate Vars?
   res.render("confirm")
 })
@@ -98,7 +104,7 @@ app.post("/sms", (req, res) => {
   res.end();
 });
 
-app.get("/etatime", (req, res) => {
+app.get("/etatime/:id", (req, res) => {
   orderProcess.checkTime(orderId)
   .then((result) => {
       let etaTime = (JSON.stringify(result).slice(13, 15))
@@ -108,7 +114,7 @@ app.get("/etatime", (req, res) => {
   })
 })
 
-app.get("/readyornot", (req, res) => {
+app.get("/readyornot/:id", (req, res) => {
   orderProcess.statusCheck(orderID)
   .then((result) => {
     let status = (JSON.stringify(result).slice(11, 16))
