@@ -55,7 +55,7 @@ makeFoodOrder.generateOrder()
       foodEntree: returnMenu.catOne,
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
-      CustOrderId: orderId,
+      CustOrderId: orderId
     });
   });
 });
