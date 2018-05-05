@@ -61,14 +61,31 @@ makeFoodOrder.generateOrder()
 });
 
 app.post("/confirm", (req, res) => {
-  console.log(req.body);
+  let wholeOrder = req.body;
+  wholeOrder.cart.forEach(function(element) {
+    makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
+    // console.log("orderId,element.id,element.qty = "+orderId,element.id,element.qty);
+  });
+  // console.log("wholeOrder.name,wholeOrder.phone = " +wholeOrder.name,wholeOrder.phone);
+  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
+  res.redirect(302, "confirm")
 })
+
+// //Ordering food
+app.post("/orders", (req, res) => {
+
+  let food_id = req.body.id.slice(4);
+  let quantity = req.body.amount.slice(4);
+  console.log(food_id, quantity)
+  console.log(orderId)
+  makeFoodOrder.makeFoodOrder(orderId, food_id, quantity);
+    res.render("index", templateVars);
+});
 
 app.get("/confirm", (req, res) => {
   //what do we need in tempate Vars?
-  res.render("confirm", templateVars)
-})
 
+})
 
 app.post("/sms", (req, res) => {
   let timeResponse = req.body.Body.slice(0, 2)

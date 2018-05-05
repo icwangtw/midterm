@@ -49,6 +49,7 @@ $(function() {
     console.log('amount', $button.siblings(".checkoutName").val());
     console.log('number' ,$button.siblings(".checkoutPhone").val());
     console.log('cart', myOrder);
+    console.log('amount', $button.parentsUntil(".body").find("#total").text());
     $.ajax({
       method: 'POST',
       url: '/confirm',
