@@ -52,10 +52,7 @@ app.get("/", (req, res) => {
       foodSnack: returnMenu.catTwo,
       foodDrink: returnMenu.catThree,
     };
-<<<<<<< HEAD
 
-=======
->>>>>>> 89748beb2435a47311af8e730e805d13798ac027
     makeFoodOrder.generateOrder()
       .then((result) => {
         orderId = result
@@ -64,7 +61,6 @@ app.get("/", (req, res) => {
       })
     });
 
-<<<<<<< HEAD
 // //Ordering food
 app.post("/orders", (req, res) => {
   let food_id = req.body.id.slice(4);
@@ -97,8 +93,6 @@ app.post("/orders/id", (req, res) => {
     })
 })
 
-=======
->>>>>>> 89748beb2435a47311af8e730e805d13798ac027
 app.post("/confirm", (req, res) => {
   let cName = req.body.name
   let cPhone = req.body.phone
