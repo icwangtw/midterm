@@ -42,6 +42,38 @@ const phoneNumLookup = (orderNum) => {
         })
 }
 
+const checkTime = (orderId) => {
+  return knex('orders')
+        .select('prep_time')
+        .where({id:orderId})
+        .then((arrayOfResults) => arrayOfResults[0])
+        .catch(function(err){
+          console.error("error running query", err);
+        })
+}
+
+const nowReady = (orderId) => {
+  return knex('orders')
+        .where({id:orderId})
+        .update({status:'ready'})
+        .catch(function(err){
+          console.error("error running query", err);
+        })
+}
+
+const statusCheck = (orderId) => {
+  return knex('orders')
+        .select('status')
+        .where({id:orderId})
+        .then((arrayOfResults) => arrayOfResults[0])
+        .catch(function(err){
+          console.error("error running query", err);
+        })
+}
+
 exports.addCInfo = addCInfo;
 exports.insertPrepTime = insertPrepTime;
 exports.phoneNumLookup = phoneNumLookup;
+exports.checkTime = checkTime
+exports.nowReady = nowReady
+exports.statusCheck = statusCheck

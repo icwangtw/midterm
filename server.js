@@ -23,7 +23,6 @@ const sendReadySMS = require("./routes/twilio_cready")
 const sendTimeSMS = require("./routes/twilio_ctime")
 const orderNotify = require("./routes/twilio_rorder")
 const orderProcess = require("./routes/orderProcess")
-const confirmUpdate = require("./public/scripts/confirmUpdate")
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -85,11 +84,11 @@ app.post("/sms", (req, res) => {
   let readyResponse = req.body.Body.slice(0, 5)
   if (readyResponse == 'Ready') {
     let orderNum = parseInt(req.body.Body.slice(6, 8))
+    orderProcess.nowReady(orderNum)
     orderProcess.phoneNumLookup(orderNum)
     .then((result) => {
         sendReadySMS(JSON.stringify(result).slice(10, 22), orderNum)
     })
-    //ajaxcall at confirmation page to ready
   }
   else {
     let orderNum = parseInt(req.body.Body.slice(3, 5))
@@ -99,12 +98,29 @@ app.post("/sms", (req, res) => {
     .then((result) => {
         sendTimeSMS(JSON.stringify(result).slice(10, 22), timeResponse)
     })
-    confirmUpdate.updateTime(timeResponse)
-
-    //pass repondTime to confirmation page and do a ajax call there
   }
   res.end();
 });
+
+app.get("/etatime", (req, res) => {
+  orderProcess.checkTime(orderId)
+  .then((result) => {
+      let etaTime = (JSON.stringify(result).slice(13, 15))
+      if (etaTime !== "nu") {
+        res.render("/etatime", etaTime)
+      }
+  })
+})
+
+app.get("/readyornot", (req, res) => {
+  orderProcess.statusCheck(orderID)
+  .then((result) => {
+    let status = (JSON.stringify(result).slice(11, 16))
+    if (status == 'ready') {
+      res.render("/ready")
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
