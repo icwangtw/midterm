@@ -61,7 +61,14 @@ makeFoodOrder.generateOrder()
 });
 
 app.post("/confirm", (req, res) => {
-  console.log(req.body);
+  let wholeOrder = req.body;
+  wholeOrder.cart.forEach(function(element) {
+    makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
+    // console.log("orderId,element.id,element.qty = "+orderId,element.id,element.qty);
+  });
+  // console.log("wholeOrder.name,wholeOrder.phone = " +wholeOrder.name,wholeOrder.phone);
+  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
+  res.redirect(302, "confirm")
 })
 
 // //Ordering food
@@ -77,13 +84,7 @@ app.post("/orders", (req, res) => {
 
 app.get("/confirm", (req, res) => {
   //what do we need in tempate Vars?
-  let wholeOrder = req.body.id;
-  wholeOrder.cart.forEach(function(element) {
-    makeFoodOrder.makeFoodOrder(orderId,element.id, element.qty);
-  });
 
-  orderProcess.addCInfo(wholeOrder.name, wholeOrder.phone);
-  res.render("confirm", templateVars)
 })
 
 app.post("/sms", (req, res) => {
