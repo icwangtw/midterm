@@ -76,7 +76,7 @@ app.post("/confirm", (req, res) => {
     result.forEach(function(element){
       content += element.name + " = " + element.quantity + ", ";
     });
-    orderNotify(orderId, content);
+    // orderNotify(orderId, content);
  })
     res.cookie("orderId", orderId)
     res.json({result:"true"});

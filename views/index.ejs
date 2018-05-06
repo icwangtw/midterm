@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 <!-- open sans font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<!-- flexbox -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css" />
 <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 <script type="text/javascript" src="/scripts/app.js"></script>
 <!-- scrolling on nav -->
@@ -67,7 +69,7 @@
       <span class="amountTotal">$
         <span id="total">0.00</span>
       </span><br>
-      <div id="checkoutButton" data-toggle="modal" data-target="#CheckOutModal">Checkout</div>
+      <div class="align-middle" id="checkoutButton" data-toggle="modal" data-target="#CheckOutModal">Checkout</div>
     </section>
     <% include ./partials/_checkout %>
   </body>
