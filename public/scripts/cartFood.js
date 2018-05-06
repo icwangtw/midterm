@@ -17,9 +17,11 @@ function renderSidebar(qty, name, price){
   $("#total").text(totalPrice);
 }
 
+//ending ID for sidebar items
+let count = 0;
+
 $(function() {
   let myOrder = [];
-
   //adds items to sidebar
    $(".submitButton").on("click", function(event){
     event.preventDefault();
@@ -39,6 +41,7 @@ $(function() {
         id: foodId,
         qty:inputAmount
       });
+      count+=1;
     }
   });
    //sends cart items to server
