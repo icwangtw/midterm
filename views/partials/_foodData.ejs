@@ -16,7 +16,7 @@
             $<%= (foodItem.price/100).toFixed(2) %><br>
             <form class= "myOrder">
               <input class= "quantity" name="quantity" value= "1"></input>
-              <input class="submitButton" type="submit" value="Add to Cart" data-dismiss="modal">
+              <input class="submitButton btn btn-primary" type="submit" value="Add to Cart" data-dismiss="modal">
               <input class= "myFoodId" type="hidden" name="food_id" value=<%=foodItem.id%>></input>
               <input class= "myFoodName" type="hidden" name="food_name" value=<%=foodItem.name%>></input>
              <input class= "myFoodPrice" type="hidden" name="food_price" value=<%=foodItem.price%>></input>
