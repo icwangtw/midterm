@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Home Page</title>
+<title>Lighthouse Foods</title>
 <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 <!-- open sans font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <!-- flexbox -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css" />
 <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-<script type="text/javascript" src="/scripts/app.js"></script>
 <!-- scrolling on nav -->
 <script type="text/javascript" src="/scripts/scroll.js"></script>
 <!-- add to cart -->
@@ -21,6 +20,9 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<!-- flexbox -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"/>
+
 <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
 <link rel="stylesheet" href="/styles/content.css" type="text/css" />
 <link rel="stylesheet" href="/styles/header.css" type="text/css" />
@@ -30,13 +32,13 @@
 <link rel="stylesheet" href="/styles/sidebar.css" type="text/css" />
 
 <header >
-    <span class="header">Restaurant APP</span>
+    <span class="header">Lighthouse Foods</span>
 </header>
 </head>
   <body class="body">
     <div class="restName">
-      <h1>Lighthouse Foods</h1>
-      The HiVE, 128 W Hastings St #300, Vancouver, BC V6B 1G8
+      <p class ="location">Where we are: 128 W Hastings Street, Vancouver, BC V6B 1G8</p>
+      <p>Open hours: 10:30 AM - 8:30 PM</p>
     </div>
     <nav>
       <a class="navEntree">Entree</a>
@@ -66,7 +68,7 @@
     </main>
     <section id="sideBar">
       <div id = "itemList"></div><br>
-      <span class="amountTotal">$
+      <span class="amountTotal">Total: $
         <span id="total">0.00</span>
       </span><br>
       <div class="align-middle" id="checkoutButton" data-toggle="modal" data-target="#CheckOutModal">Checkout</div>

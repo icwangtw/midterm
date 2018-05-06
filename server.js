@@ -84,8 +84,8 @@ app.post("/confirm", (req, res) => {
 
 
 app.get("/confirm", (req, res) => {
-  console.log("working get");
-  res.render("confirm");
+  let orderId = req.cookies['orderId'];
+  res.render("confirm", {orderNum: orderId});
 });
 
 //SMS routes
