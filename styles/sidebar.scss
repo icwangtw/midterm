@@ -23,6 +23,9 @@
   border-width: 1px;
   background-color:$col-font;
   font-weight:bold;
+  display: flex;
+ align-items: center;
+ justify-content: center;
 }
 
 .amountTotal{

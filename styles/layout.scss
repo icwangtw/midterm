@@ -33,3 +33,19 @@ td{
   float:left;
 }
 
+.card {
+  border: 1px solid;
+  margin: 10px;
+  padding:10px;
+  border-color: $sidebar-col;
+  background-color :white;
+  border-radius: 5px;
+}
+
+.row {
+  margin: 0 0 0 5px;
+}
+
+.card-text {
+  color:$sidebar-col
+}

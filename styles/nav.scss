@@ -8,13 +8,14 @@ body nav{
   color: $col-font;
   font-size: 1.5em;
   text-align:center;
-
+  z-index:10
 }
 
 body nav *{
   padding-left:1em;
   cursor:default;
   color:$col-font;
+  font-weight: bold;
 }
 
 body nav *:hover{

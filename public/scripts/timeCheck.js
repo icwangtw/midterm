@@ -15,7 +15,7 @@ function getTime() {
             success: function(whenReady){
               if(whenReady === "pickup"){
                 clearInterval(readyInterval);
-                $("#status").text("Your food is ready for pick up");
+                $("#status").text("🎉 Your food is ready for pick up! 🎉");
               }
             },
             error: function (jqXHR, textStatus, errThrown){

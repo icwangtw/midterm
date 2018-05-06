@@ -6,8 +6,55 @@
   overflow:visible;
   font-size:3em;
   text-align: center;
+  width: 100%;
   font-family: $my-font;
   background-color: $col-font;
   color: $main-col;
   font-weight: bold;
+}
+
+.restName{
+  text-align: center;
+  font-family: $my-font;
+  background-color: $main-col;
+  @extend %borders;
+  border-bottom-width: 1px;
+  color: $col-font;
+}
+
+body{
+  padding-top:$pad-banner;
+  font-family: $my-font;
+  background-color: $main-col;
+  color:$col-font;
+}
+
+.location{
+  margin: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#status {
+  text-align: center;
+}
+
+.number {
+  margin: 40px 0;
+ text-align: center;
+   font-weight: bold;
+}
+
+.message {
+  margin: 100px 0;
+  font-style:italic;
+  text-align: center;
+  font-weight: bold;
+  color: $sidebar-col;
+}
+
+.map {
+  margin: 20px;
+    color: $sidebar-col;
+      text-align: center;
 }

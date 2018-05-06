@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Lighthouse Foods - Thank you for your order!</title>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
     <!-- checkout -->
@@ -16,12 +16,6 @@
 
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/confirm.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/sidebar.css" type="text/css" />
-
   </head>
   <body>
 <header >
@@ -33,7 +27,20 @@
       <p class ="location">Where we are: 128 W Hastings Street, Vancouver, BC V6B 1G8</p>
       <p>Open hours: 10:30 AM - 8:30 PM</p>
     </div>
-    <h2>Thank you for your order!</h2>
-    <h2 id="status"> The restaurant will provide an estimated preparation time shortly.</h2>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+    <h1 class="message">Thank you for your order!</h1>
+    <h3 class="number">Your order number is: <%=orderNum%></h3>
+    <h3 id="status"> The restaurant will provide an estimated prep time in a few moments.</h3>
+    </div>
+    <div class="col-md-5 map"><h3>Where to find us</h3><iframe
+          width="450"
+          height="450"
+          frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApODGO9ewfK9tnsa-6cYr87zJBOpWffUQ
+          &q=128+W+Hastings+St,+Vancouver,+BC+V6B+1G9" allowfullscreen>
+    </iframe>
+    </div>
+    <div class="col-md-1"></div>
   </body>
 </html>
