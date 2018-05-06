@@ -4,7 +4,7 @@
         <h4 class="card-title"><img class="foodImg" src="/foodpics/<%=foodItem.id%>.jpg"></h4>
         <p class="card-text"> <%= foodItem.name.replace("_"," ") %><br>
             $<%= (foodItem.price/100).toFixed(2) %></p>
-        <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#myModal-<%=foodItem.id%>">Add to Cart</a>
+        <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#myModal-<%=foodItem.id%>">Add to Cart</a>
       </div>
 
     <div id="myModal-<%=foodItem.id%>" class="modal fade" role="dialog">
@@ -16,7 +16,7 @@
             $<%= (foodItem.price/100).toFixed(2) %><br>
             <form class= "myOrder">
               <input class= "quantity" name="quantity" value= "1"></input>
-              <input class="submitButton btn btn-primary" type="submit" value="Add to Cart" data-dismiss="modal">
+              <input class="submitButton btn btn-success" type="submit" value="Add to Cart" data-dismiss="modal">
               <input class= "myFoodId" type="hidden" name="food_id" value=<%=foodItem.id%>></input>
               <input class= "myFoodName" type="hidden" name="food_name" value=<%=foodItem.name%>></input>
              <input class= "myFoodPrice" type="hidden" name="food_price" value=<%=foodItem.price%>></input>
