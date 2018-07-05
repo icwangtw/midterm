@@ -4,10 +4,10 @@ const authToken = key.twilio_key;
 const client = require('twilio')(accountSid, authToken);
 
 module.exports = notify = (phoneNum, estTime) => {
-client.messages
+  client.messages
   .create({
      body: `Thank you for your order! Your food will be ready in ${estTime} minutes.`,
-     from: '+16043730358',
+     from: key.twilioNum,
      to: phoneNum
    })
   .done();
